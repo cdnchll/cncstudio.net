@@ -1,0 +1,42 @@
+/* Base: Mobile styles first */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Tablet and up (medium screens) */
+@media (min-width: 48rem) {
+    .container {
+        max-width: 76.25rem;
+    }
+}
+
+/* Desktop (large screens) */
+@media (min-width: 64rem) {
+    .container {
+        max-width: 81.25rem;
+    }
+}
+
+/* Algemene container */
+.container {
+    max-width: 21.25rem;
+    /* 340px / 16 */
+    width: 100%;
+    margin: 0 auto;
+
+
+}
+
+/*-------------------------------------------------------*/
