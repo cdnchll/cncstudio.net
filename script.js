@@ -71,6 +71,10 @@ document.querySelectorAll('.link-contact-btn').forEach(link => {
     });
 });
 
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
+
 
 
 
