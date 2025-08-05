@@ -1,3 +1,27 @@
+/*popup*/
+document.addEventListener('DOMContentLoaded', function () {
+    const isIndex = window.location.pathname.endsWith('index.html') || window.location.pathname === '/';
+
+    if (isIndex) {
+        const popup = document.getElementById('popup');
+        const closeBtn = document.getElementById('close-popup-btn');
+
+        // Laat de popup zien
+        popup.style.display = 'flex';
+
+        // Scroll blokkeren door class toe te voegen aan <body>
+        document.body.classList.add('no-scroll');
+
+        // Sluiten van de popup
+        closeBtn.addEventListener('click', function () {
+            popup.style.display = 'none';
+
+            // Scroll weer toestaan door class te verwijderen
+            document.body.classList.remove('no-scroll');
+        });
+    }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
