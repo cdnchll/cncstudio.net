@@ -9,7 +9,6 @@ body {
     scroll-behavior: smooth;
 }
 
-body.no-scroll {}
 
 
 body.menu-open {
@@ -211,6 +210,24 @@ body {
     background-size: cover;
 }
 
+.hero-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Donkere overlay */
+    z-index: 1;
+}
+
+.hero-box .container,
+.hero-box .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
 .hero-box .container {
     display: flex;
     flex-direction: column;
@@ -277,7 +294,7 @@ body {
 
 .quality1-content h1 {
     color: #000;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
     font-family: Outfit, sans-serif;
     font-size: 1.75rem;
     font-style: normal;
@@ -357,7 +374,7 @@ body {
 
 .quality3-content h1 {
     color: #000;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
     font-family: Outfit, sans-serif;
     font-size: 1.75rem;
     font-style: normal;
@@ -508,7 +525,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100svh;
+    height: auto;
     min-height: 31.75rem;
     background-color: black;
     background-repeat: no-repeat;
@@ -551,7 +568,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100svh;
+    height: auto;
     min-height: 31.75rem;
     background-color: white;
     background-repeat: no-repeat;
@@ -559,12 +576,12 @@ body {
 
 #watikdoe .content {
     position: relative;
-    margin-top: 6.25rem;
+
 }
 
 #watikdoe .content h2 {
     color: black;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
     font-family: Outfit, sans-serif;
     font-size: 1.75rem;
     font-style: normal;
