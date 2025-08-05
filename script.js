@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+/* fade-in effect bij scrollen */
 document.addEventListener("DOMContentLoaded", () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -33,54 +34,62 @@ document.addEventListener("DOMContentLoaded", () => {
         threshold: 0.1 // 10% van het element moet in beeld zijn
     });
 
-    // Alles selecteren wat moet animeren
     const sections = document.querySelectorAll(".fade-in-section");
     sections.forEach(section => {
         observer.observe(section);
     });
 });
 
+/* menu toggle + scroll fix */
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.header-nav');
     const navLinks = document.querySelectorAll('.header-nav_item');
+    let scrollPosition = 0;
 
     menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('open');
-        navMenu.classList.toggle('active');
-
         const navItems = document.querySelectorAll('.header-nav_item');
 
-        if (navMenu.classList.contains('active')) {
-            // Scroll blokkeren
+        if (!navMenu.classList.contains('active')) {
+            // Menu gaat open
+            scrollPosition = window.scrollY;
+            document.body.style.top = `-${scrollPosition}px`;
             document.body.classList.add('no-scroll');
 
-            // Fade-in effect per item
+            navMenu.classList.add('active');
+            menuToggle.classList.add('open');
+
             navItems.forEach((item, index) => {
                 item.style.transitionDelay = `${index * 100}ms`;
             });
         } else {
-            // Scroll weer toestaan
+            // Menu sluit
             document.body.classList.remove('no-scroll');
+            document.body.style.top = '';
+            window.scrollTo(0, scrollPosition);
 
-            // Reset delays
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('open');
+
             navItems.forEach((item) => {
                 item.style.transitionDelay = '0ms';
             });
         }
     });
 
-
+    // Menu sluit bij klikken op link
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             menuToggle.classList.remove('open');
             navMenu.classList.remove('active');
+
+            document.body.classList.remove('no-scroll');
+            document.body.style.top = '';
+            window.scrollTo(0, scrollPosition);
         });
     });
 });
 
-window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
 
-};
+
 /*klaar*/
