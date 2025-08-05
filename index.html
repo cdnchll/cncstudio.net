@@ -1,65 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
-    <meta charset="utf-8">
-    <title>CODE&amp;CHILL Precision, without Pressure.</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-
-    <!-- ░░░ GOOGLE FONTS ░░░ -->
-    <!-- Outfit font weights: 300, 400, 600, 700, 800 -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Karla font weights: 400, 700 -->
-    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Patrick Hand font weights: 400, 700 -->
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-
-    <!-- Montserrat font and weights 400 700...-->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-
-    <!-- Optional handwriting fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
-
-    <!-- SEO basics -->
-    <title>CODE&CHILL - Precision, without Pressure. | Front-End Webdeveloper</title>
+    <!-- SEO -->
+    <title>Betaalbare en Professionele Websites voor KMO's en Startups | Code&Chill</title>
     <meta name="description"
-        content="CODE&CHILL is the portfolio of a front-end web developer specializing in  websites. Need a website? Let's build it.">
-    <meta name="author" content="Murilo Oliveira Silva">
-
-    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
-    <meta property="og:title" content="CODE&CHILL. - Precision, without Pressure.">
+        content="Op zoek naar een betaalbare, professionele website voor je KMO of startup? Code&Chill bouwt snelle, moderne websites op maat.">
+    <meta name="robots" content="index, follow" />
+    <!-- Open Graph (voor sociale media previews) -->
+    <meta property="og:title" content="Betaalbare en Professionele Websites voor KMO's en Startups | Code&Chill" />
     <meta property="og:description"
-        content="CODE&CHILL is the portfolio of a front-end web developer specializing in  websites. Need a website? Let's build it.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.cncstudio.net">
-    <meta property="og:image" content="https://www.cncstudio.net/assets/og-image.jpg">
+        content="Op zoek naar een betaalbare, professionele website voor je KMO of startup? Code&Chill bouwt snelle, moderne websites op maat." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cncstudio.net" />
+    <meta property="og:image" content="https://www.cncstudio.net/Assets/og-image.jpg" />
+    <!-- Favicon -->
+    <link rel="icon" href="/public/favicon.ico" type="image/x-icon" />
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Outfit-->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!--Font Barlow-->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100..900&display=swap" rel="stylesheet">
 
-    <!--favicon!-->
-    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+
 </head>
-<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-<!-- 01_HEADER -->
 
 <body>
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <p><strong>Heads up!</strong><br>
-                This website is designed mobile-first and is not yet optimized for large screens.<br>
-                Portfolio content is coming soon, stay tuned!
-            </p>
-            <button id="close-popup-btn">Got it</button>
-        </div>
-    </div>
-    <header>
-        <div class="header-box">
+    <!-- Content hier -->
+
+    <!-- 01_Header -->
+    <section id="home">
+        <header class="header-box">
+
             <div class="container">
-                <img class="logo-cnc" src="Assets/02_phone/01_logo/logo-cnc.svg" alt="Logo Code&Chill">
+                <img class="logo-cnc" src="./Assets/02_phone/01_logo/logo-cnc.svg">
                 <svg class="menu-toggle" width="31" height="31" viewBox="0 0 31 31" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path class="top-bar" d="M4.55884 4.55884H26.4412" stroke="white" stroke-width="2"
@@ -70,282 +48,109 @@
                         stroke-linecap="round" />
                 </svg>
             </div>
-        </div>
-        <nav class="main-menu">
-            <ul>
-                <li><a href="#home">home</a></li>
-                <li><a href="#whycnc">why <span>CODE&CHILL</span></a></li>
-                <li><a href="#about">about me</a></li>
-                <li><a href="#contact">contact me</a></li>
-            </ul>
+        </header>
+        <nav class="header-nav">
+            <div class="nav-wrapper">
+                <ul>
+                    <li><a class="header-nav_item" href="#home">Home</a></li>
+                    <li><a class="header-nav_item" href="/whywcnc.html">Why <span>CODE&CHILL</span></a></li>
+                    <li><a class="header-nav_item" href="/about.html">About me</a></li>
+                    <li><a class="header-nav_item" href="#contact">Contact me</a></li>
+                </ul>
+            </div>
         </nav>
-    </header>
-
-    <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    </section>
 
     <!-- 02_HERO -->
+    <section id="hero" class="hero-box">
+        <div class="container ">
+            <div class="hero-content fade-in-section">
+                <h1>Snel, profesioneel en betrouwbaar.</h1>
+                <p>Laat vandaag nog starten met een responsive, SEO-vriendelijke maatwerk website, professioneel
+                    gebouwd, zonder WordPress, <span>tegen een eerlijke en concurrerende prijs!!!</span> </p>
+            </div>
+        </div>
+    </section>
 
-    <section id="home" class="hero-section">
-        <div class="hero-background">
+    <!-- 03_quality -->
+    <section id="quality">
+        <div class="quality1-box">
             <div class="container">
-                <div class="hero-content">
-                    <h1><span class="hero-title">Fast. Responsive. Handcrafted websites.</span><br><span
-                            class="hero-subtitle">Clean code. Smooth
-                            experience.</span></h1>
-                    <p>Ready to build yours?</p>
-                    <a class="link-contact-btn" href="#contact">
-                        Click Here</a>
+                <div class="quality1-content fade-in-section">
+                    <h1>&#128077;&#127998;<br>Gebruiksvriendelijke Website</h1>
+                    <p>Een website moet direct duidelijk maken wie je bent en wat je aanbiedt. Geen zoekwerk, geen
+                        verwarring. Bezoekers moeten instinctief weten waar ze moeten klikken, hoe ze contact opnemen en
+                        wat je voor hen kan betekenen.</p>
+                    <img class="gebruiksvriendelijke-foto" src="./Assets/02_phone/02_image/gebruiksvriendelijk-foto.png"
+                        alt="Computer Scherm">
+                </div>
+            </div>
+        </div>
+        <div class="quality2-box">
+            <div class="container">
+                <div class="quality2-content fade-in-section">
+                    <h1>&#128640;<br>Snelle Website</h1>
+                    <p>Mensen hebben weinig geduld online. Als je site traag laadt, haken ze af.
+                        Een snelle website voelt professioneel, verhoogt je geloofwaardigheid én helpt zelfs je positie
+                        in Google.
+                        Korte laadtijden = betere eerste indruk.</p>
+                    <img class="snelleWebsite-foto" src="./Assets/02_phone/02_image/fastwebsite-example.png"
+                        alt="laptop op een steen.">
+                </div>
+            </div>
+        </div>
+        <div class="quality3-box">
+            <div class="container">
+                <div class="quality3-content fade-in-section">
+                    <h1>&#128241;<br>Mobielvriendelijk</h1>
+                    <p>Je website moet er goed uitzien en werken op elk scherm, van smartphone tot laptop.
+                        Als je site op mobiel rommelig is of knoppen niet klikbaar zijn, verlies je meteen vertrouwen.
+                        Responsiveness = toegankelijkheid voor iedereen, altijd en overal.</p>
+                    <img class="mobilevriendelijk-foto" src="./Assets/02_phone/02_image/responsive-example.png"
+                        alt="Mobile on hand">
                 </div>
             </div>
         </div>
     </section>
 
-    <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-    <!-- 03_QUALITY -->
-    <!--fast-->
-    <section class="quality-section">
-        <div class="quality-fast-background">
+    <!-- 04_CONTACT -->
+    <section>
+        <div class="contact-box">
             <div class="container">
-                <div class="quality-fast-content fade-in-on-scroll">
-                    <p>A <span class="fade-in-on-scroll">fast</span> website loads quickly on any device, keeps visitors
-                        engaged, improves your
-                        <span class="fade-in-on-scroll">Google</span> ranking, and gives your brand <span>a trustworthy,
-                            professional feel</span>,
-                        all while
-                        working smoothly even on slow mobile networks.
-                    </p>
-                </div>
-            </div>
-            <img class="image-mac fade-in-on-scroll" src="Assets/02_phone/02_image/mockup-mac.png" alt="Mac foto">
-        </div>
-
-        <!--responsive-->
-        <div class="quality-responsive-background">
-            <div class="container">
-                <div class="quality-responsive-content fade-in-on-scroll">
-                    <p>When a website is <span class="fade-in-on-scroll">responsive</span>, it looks great and works
-                        smoothly on <span class="fade-in-on-scroll">any</span>
-                        screen, phone, tablet, or
-                        desktop, so every visitor has a clean, comfortable experience no matter how they access your
-                        site.
-                    </p>
-                </div>
-            </div>
-            <img class="image-iphone fade-in-on-scroll" src="Assets/02_phone/02_image/mockup-iphone.png"
-                alt="Phone on hand">
-        </div>
-
-        <!--handcraft-->
-        <div class="quality-handcraft-background">
-            <div class="container">
-                <div class="quality-handcraft-content fade-in-on-scroll">
-                    <p>A website that’s <span class="fade-in-on-scroll">fully coded</span> from scratch,<span
-                            class="fade-in-on-scroll"> no
-                            templates or builders</span>,
-                        handcrafted to
-                        be unique,
-                        fast, and flexible, and tailored exactly to your brand and needs.
-                    </p>
-                </div>
-            </div>
-            <img class="image-desktop fade-in-on-scroll" src="Assets/02_phone/02_image/mockup-desktop.png"
-                alt="Desktop on table">
-        </div>
-    </section>
-
-    <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-    <!-- 04_PROJECTS -->
-
-
-    <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-    <!-- 05_WHY CODE&CHILL -->
-    <section id="whycnc" class="whycnc-section">
-        <div class="whycnc-background">
-            <div class="container">
-                <div class="whycnc-content fade-in-on-scroll">
-                    <h1 class="whycnc-title fade-in-on-scroll">"Code&Chill<br>
-                        <span>isn’t just a catchy name,</span><br><span class="delete">---- </span>it's a<br>
-                        <span class="delete"> -------</span> mindset!"
-                    </h1>
-                    <p class="whycnc-text fade-in-on-scroll">Code&Chill is about earning that chill, by building
-                        something real, focused,
-                        and honest.
-                        I believe in working hard with intention, so both you and I can relax later, knowing the job was
-                        done right.<br>
-                        I create websites especially for startups and first-time founders, because I love being part of
-                        that first spark, that early belief. When you’re just starting out, your website is more than
-                        just a design. It’s your handshake to the world. It says “Hi, this is who I am.” It’s your
-                        first chance to be trusted, to be taken seriously.<br>
-                        That’s why I build with clarity, care, and pride, so your site doesn’t just look good, it feels
-                        right. It reflects who you are and where you’re going.<br>
-                        Code&Chill is about making that first impression unforgettable and doing it in a way that feels
-                        focused, thoughtful, and just the right amount of chill.</p>
+                <div class="contact-info fade-in-section">
+                    <h1>Vraag nu een gratis offerte aan!</h1>
+                    <h3>Wacht niet langer om jouw droomwebsite werkelijkheid te maken!
+                    </h3>
+                    <p class="telefoon-nr">&#128222; +32 72 28 83 09</p>
+                    <p class="email-adres">&#128233; info@cncstudio.net</p>
+                    <div class="links">
+                        <a href="https://www.linkedin.com/in/murilo-oliveira-silva-7a0537247/" target="_blank"> <img
+                                src="./Assets/02_phone/01_logo/logo-linkedin.svg" alt="Linkedin link" width="40"></a>
+                        <a href="https://www.instagram.com/codeandchillstudio/" target="_blank"> <img
+                                src="./Assets/02_phone/01_logo/ig-logo.svg" alt="Ig link" width="40"></a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!--rolling logos-->
-    <div class="slider fade-in-on-scroll">
-        <div class="item item1"><svg class="logo-figma slide" width="40" height="40" viewBox="0 0 40 40" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M20 20C20 17.2386 22.2386 15 25 15C27.7614 15 30 17.2386 30 20C30 22.7614 27.7614 25 25 25C22.2386 25 20 22.7614 20 20Z"
-                    fill="#1ABCFE" />
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M10 30C10 27.2386 12.2386 25 15 25H20V30C20 32.7614 17.7614 35 15 35C12.2386 35 10 32.7614 10 30Z"
-                    fill="#0ACF83" />
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M20 5V15H25C27.7614 15 30 12.7614 30 10C30 7.23857 27.7614 5 25 5H20Z" fill="#FF7262" />
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M10 10C10 12.7614 12.2386 15 15 15H20V5H15C12.2386 5 10 7.23857 10 10Z" fill="#F24E1E" />
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M10 20C10 22.7614 12.2386 25 15 25H20V15H15C12.2386 15 10 17.2386 10 20Z" fill="#A259FF" />
-            </svg></div>
-        <div class="item item2"><svg class="logo-vscode slide" width="40" height="40" viewBox="0 0 40 40" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M26.252 3.89599C26.252 2.79729 25.0218 2.79728 24.4751 2.93461C25.2405 2.33033 26.1381 2.47684 26.457 2.65995L33.8487 6.28434C34.553 6.62969 34.9997 7.34825 34.9997 8.13571V31.9789C34.9997 32.7769 34.5411 33.5031 33.8225 33.8429L26.8671 37.1318C26.3886 37.3376 25.3498 37.8459 24.4751 37.1316C25.5686 37.3377 26.1608 36.5595 26.252 36.033V3.89599Z"
-                    fill="url(#paint0_linear_1_22)" />
-                <path
-                    d="M24.564 2.91487C25.1443 2.80021 26.2523 2.85339 26.2523 3.89606V12.1032L3.84199 29.0566C3.45028 29.353 2.899 29.3037 2.56536 28.9427L0.255665 26.4435C-0.10617 26.052 -0.080853 25.4391 0.31203 25.0791L24.4753 2.93469L24.564 2.91487Z"
-                    fill="url(#paint1_linear_1_22)" />
-                <path
-                    d="M26.2523 27.9635L3.84199 11.01C3.45028 10.7137 2.899 10.7629 2.56536 11.1239L0.255665 13.6231C-0.10617 14.0146 -0.080853 14.6275 0.31203 14.9876L24.4753 37.132C25.5688 37.338 26.1611 36.5597 26.2523 36.0332V27.9635Z"
-                    fill="url(#paint2_linear_1_22)" />
-                <defs>
-                    <linearGradient id="paint0_linear_1_22" x1="29.7375" y1="2.5" x2="29.7375" y2="37.5"
-                        gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#32B5F1" />
-                        <stop offset="1" stop-color="#2B9FED" />
-                    </linearGradient>
-                    <linearGradient id="paint1_linear_1_22" x1="26.2523" y1="6.91748" x2="1.27713" y2="27.8814"
-                        gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#0F6FB3" />
-                        <stop offset="0.270551" stop-color="#1279B7" />
-                        <stop offset="0.421376" stop-color="#1176B5" />
-                        <stop offset="0.618197" stop-color="#0E69AC" />
-                        <stop offset="0.855344" stop-color="#0F70AF" />
-                        <stop offset="1" stop-color="#0F6DAD" />
-                    </linearGradient>
-                    <linearGradient id="paint2_linear_1_22" x1="1.44403" y1="12.4799" x2="26.3489" y2="33.101"
-                        gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#1791D2" />
-                        <stop offset="1" stop-color="#1173C5" />
-                    </linearGradient>
-                </defs>
-            </svg></div>
-        <div class="item item3"><svg class="logo-html5 slide" width="40" height="40" viewBox="0 0 40 40" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.5 35L5 3.75H35L32.5 35L20 38.75L7.5 35Z" fill="#E44D26" />
-                <path d="M32.5 6.25H20V36.875L30 33.75L32.5 6.25Z" fill="#F16529" />
-                <path
-                    d="M11.875 21.875L10.625 10H30L29.375 13.75H14.375L15 18.125H28.75L27.5 30L20 32.5L12.5 30L11.875 23.75H15.625L16.25 26.875L20 28.125L23.75 26.875L24.375 21.875H11.875Z"
-                    fill="white" />
-            </svg></div>
-        <div class="item item4"><svg class="logo-css3 slide" width="40" height="40" viewBox="0 0 40 40" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.5 35L5 3.75H35L32.5 35L20 38.75L7.5 35Z" fill="#1172B8" />
-                <path d="M32.5 6.25H20V36.875L30 33.75L32.5 6.25Z" fill="#33AADD" />
-                <path
-                    d="M24.375 21.875H11.875L11.25 17.5L21.25 14.375H11.25L10.625 10.625H30L29.375 15L21.25 18.125H28.75L27.5 30L20 32.5L12.5 30L11.875 23.75H15.625L16.25 26.875L20 28.125L23.75 26.875L24.375 21.875Z"
-                    fill="white" />
-            </svg></div>
-        <div class="item item5"><svg class="logo-javascript slide" width="40" height="40" viewBox="0 0 40 40"
-                fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M37.5 2.5H2.5V37.5H37.5V2.5Z" fill="#FFCA28" />
-                <path
-                    d="M23.75 31.6099L26.3269 29.9046C26.5289 30.5391 27.8077 32.046 29.4231 32.046C31.0385 32.046 31.7885 31.1637 31.7885 30.5787C31.7885 28.9847 30.139 28.4227 29.3467 28.1529C29.2175 28.1089 29.1113 28.0726 29.0385 28.041C29.0011 28.0247 28.9448 28.0031 28.8724 27.9755C27.9913 27.6389 24.7404 26.3969 24.7404 22.7966C24.7404 18.8312 28.5672 18.3752 29.4327 18.3752C29.9989 18.3752 32.7211 18.4446 34.0769 20.9924L31.5769 22.7372C31.0289 21.6269 30.1183 21.2601 29.5578 21.2601C28.1731 21.2601 27.8846 22.2751 27.8846 22.7372C27.8846 24.0337 29.389 24.6149 30.6591 25.1055C30.9915 25.2339 31.3077 25.356 31.5769 25.4832C32.9615 26.1375 35 27.2082 35 30.5787C35 32.267 33.584 35.0002 30.0192 35.0002C25.2307 35.0002 23.9615 32.1254 23.75 31.6099Z"
-                    fill="#3E3E3E" />
-                <path
-                    d="M11.25 31.9484L13.9359 30.2441C14.1462 30.8782 14.9641 32.0475 16.1506 32.0475C17.3372 32.0475 17.9446 30.8287 17.9446 30.2441V18.7502H21.2477V30.2441C21.3012 31.8295 20.422 35.0002 16.5415 35.0002C12.9738 35.0002 11.4905 32.8799 11.25 31.9484Z"
-                    fill="#3E3E3E" />
-            </svg></div>
-        <div class="item item6"><svg class="logo-git slide" width="40" height="40" viewBox="0 0 40 40" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M3.2317 21.7665C2.2561 20.7909 2.2561 19.2091 3.2317 18.2335L18.2335 3.2317C19.2091 2.2561 20.7909 2.2561 21.7665 3.2317L36.7682 18.2335C37.7439 19.2091 37.7439 20.7909 36.7682 21.7665L21.7665 36.7682C20.7909 37.7439 19.2091 37.7439 18.2335 36.7682L3.2317 21.7665Z"
-                    fill="#EE513B" />
-                <path
-                    d="M15.1861 6.3269L13.667 7.84607L17.5906 11.7697C17.4319 12.1102 17.3432 12.49 17.3432 12.8905C17.3432 14.0275 18.0576 14.9976 19.062 15.3765V24.9747C18.0576 25.3536 17.3432 26.3237 17.3432 27.4607C17.3432 28.9277 18.5325 30.117 19.9995 30.117C21.4665 30.117 22.6557 28.9277 22.6557 27.4607C22.6557 26.43 22.0686 25.5362 21.2105 25.096V15.3896L24.9611 19.1402C24.8101 19.4739 24.7261 19.8442 24.7261 20.2342C24.7261 21.7012 25.9154 22.8905 27.3824 22.8905C28.8494 22.8905 30.0386 21.7012 30.0386 20.2342C30.0386 18.7672 28.8494 17.578 27.3824 17.578C27.0972 17.578 26.8227 17.6229 26.5652 17.706L22.5371 13.6779C22.6142 13.4291 22.6557 13.1646 22.6557 12.8905C22.6557 11.4235 21.4665 10.2342 19.9995 10.2342C19.7254 10.2342 19.461 10.2758 19.2121 10.3529L15.1861 6.3269Z"
-                    fill="white" />
-            </svg></div>
-        <div class="item item7"><svg class="logo-github slide" width="40" height="40" viewBox="0 0 40 40" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M20 36.6667C29.2047 36.6667 36.6667 29.2047 36.6667 20C36.6667 10.7952 29.2047 3.33333 20 3.33333C10.7952 3.33333 3.33333 10.7952 3.33333 20C3.33333 29.2047 10.7952 36.6667 20 36.6667Z"
-                    fill="#181717" />
-                <path
-                    d="M5.6779 28.5292C7.70676 31.9282 10.9116 34.5438 14.731 35.8153C15.5649 35.9678 15.8688 35.4532 15.8688 35.0112C15.8688 34.8282 15.8657 34.5048 15.8616 34.0722C15.8568 33.571 15.8507 32.9233 15.8463 32.177C11.2103 33.1838 10.2323 29.9425 10.2323 29.9425C9.47409 28.0179 8.38134 27.5053 8.38134 27.5053C6.86809 26.4709 8.49592 26.4913 8.49592 26.4913C10.1688 26.6101 11.0487 28.2093 11.0487 28.2093C12.5353 30.7559 14.95 30.0203 15.8995 29.5946C16.0509 28.5173 16.4806 27.7826 16.9574 27.3662C13.2567 26.9457 9.36559 25.5153 9.36559 19.1287C9.36559 17.3096 10.0153 15.8219 11.0814 14.6566C10.9095 14.235 10.3376 12.5407 11.2441 10.2457C11.2441 10.2457 12.6438 9.79758 15.8278 11.9544C17.1569 11.5851 18.5832 11.3998 20.0003 11.3937C21.4153 11.3998 22.8416 11.5851 24.1727 11.9544C27.3547 9.79758 28.7513 10.2457 28.7513 10.2457C29.6609 12.5407 29.0889 14.235 28.9171 14.6566C29.9853 15.8219 30.6308 17.3096 30.6308 19.1287C30.6308 25.5317 26.7337 26.9405 23.0206 27.3528C23.6192 27.8675 24.1523 28.8845 24.1523 30.4397C24.1523 31.9293 24.1431 33.2268 24.137 34.0863C24.134 34.5119 24.1318 34.8302 24.1318 35.0112C24.1318 35.4573 24.4315 35.976 25.2777 35.8133C28.3203 34.7977 30.9726 32.9295 32.9503 30.4919C29.8945 34.259 25.2283 36.6667 19.9998 36.6667C13.9119 36.6667 8.5865 33.4027 5.6779 28.5292Z"
-                    fill="white" />
-            </svg></div>
-
-
-
-
-
-
-
-
-    </div>
-
-    <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-    <!-- 06_ABOUT ME -->
-    <section id="about" class="about-me">
-        <div class="about-me-background">
-            <div class="container">
-                <div class="about-me-content fade-in-on-scroll">
-                    <h1 class="fade-in-on-scroll">About Me</h1>
-                    <p>
-                        Hallo again! I'm Murilo Oliveira Silva, originally from Brazil and now based in Belgium. I used
-                        to work as a purchaser, but I've made the switch to tech and now work as a front-end web
-                        developer while also learning back-end development. I'm especially passionate about creating
-                        websites for small businesses and startups. Helping them grow with clean, functional, and modern
-                        web solutions is what drives me every day. Let's build something great together!
-                    </p>
-                    <img class="fade-in-on-scroll" src="Assets/02_phone/02_image/aboutMe-image.png"
-                        alt="Murilo Working">
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-    <!-- 07_CONTACT ME -->
-    <section id="contact" class="contact">
-        <div class="contact-me-background">
-            <div class="container">
-                <div class="contact-me-info fade-in-on-scroll">
-                    <h1 class="fade-in-on-scroll">Let's Talk!</h1>
-                    <p class="fade-in-on-scroll">Got a question or project in mind?</p>
-                    <p class="fade-in-on-scroll phone">&#128241; +32 472 28 83 09</p>
-                    <p class="fade-in-on-scroll mail">&#128233; info@cncstudio.net</p>
-                    <a class="fade-in-on-scroll" href="https://www.linkedin.com/in/murilo-oliveira-silva-7a0537247/"
-                        target="_blank" rel="noopener noreferrer"><img class="logo-linkedin"
-                            src="Assets/02_phone/01_logo/logo-linkedin.svg" </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer class="footer fade-in-on-scroll">
+    <!-- 05_Footer-->
+    <footer id="contact">
         <div class="footer-box">
             <div class="container">
                 <div class="footer-content">
-
-                    <p>© 2025 Murilo Oliveira Silva. All rights reserved.<br>
-                        Designed & built by me , always learning, always building.</p>
+                    <p class="fade-in-section">© 2025 Murilo Oliveira Silva. All rights reserved.<br>Designed & built by
+                        me , always learning,
+                        always building.</p>
                 </div>
             </div>
         </div>
     </footer>
 
+
     <script src="script.js"></script>
+
+
 </body>
 
 </html>

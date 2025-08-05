@@ -1,80 +1,61 @@
-/*popup*/
-document.addEventListener('DOMContentLoaded', function () {
-    const popup = document.getElementById('popup');
-    const closeBtn = document.getElementById('close-popup-btn');
-
-    closeBtn.addEventListener('click', function () {
-        popup.style.display = 'none';
-    });
-});
-/*---------------------------------------------------------*/
-
-/* -- MENU TOGGLE OPEN-CLOSE --*/
-// Select the menu toggle button (the SVG)
-const menuToggle = document.querySelector('.menu-toggle');
-const mainMenu = document.querySelector('.main-menu');
-const menuLinks = document.querySelectorAll('.main-menu a');
-// Add a click event to toggle the "open" class
-menuToggle.addEventListener('click', () => {
-    console.log("Menu toggle clicked!");
-    menuToggle.classList.toggle('open');
-    mainMenu.classList.toggle('open');
-    document.body.classList.toggle('menu-open'); // ← block or allow scroll
-});
-
-menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        // Close the menu
-        document.querySelector('.main-menu').classList.remove('open');
-        document.querySelector('.menu-toggle').classList.remove('open');
-        document.body.classList.remove('menu-open');
-    });
-});
-
-
-/*--scroll effect*/
-
-document.addEventListener("DOMContentLoaded", function () {
-    const elements = document.querySelectorAll(".fade-in-on-scroll");
-
-    const observer = new IntersectionObserver((entries, observer) => {
+document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
-                observer.unobserve(entry.target); // Verwijderen als je de animatie maar één keer wilt
             }
         });
     }, {
-        threshold: 0.1
+        threshold: 0.1 // 10% van het element moet in beeld zijn
     });
 
-    elements.forEach(el => observer.observe(el));
+    // Alles selecteren wat moet animeren
+    const sections = document.querySelectorAll(".fade-in-section");
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 });
 
-// Delay click effect on .link-contact-btn
-document.querySelectorAll('.link-contact-btn').forEach(link => {
-    link.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.header-nav');
+    const navLinks = document.querySelectorAll('.header-nav_item');
 
-        // Only delay for anchor links (e.g. #contact)
-        if (href && href.startsWith('#')) {
-            e.preventDefault(); // stop default jump
-            this.classList.add('clicked'); // optional visual effect
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('open');
+        navMenu.classList.toggle('active');
 
-            setTimeout(() => {
-                const targetElement = document.querySelector(href);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                }
-            }, 200); // delay in ms (tweak if needed)
+        const navItems = document.querySelectorAll('.header-nav_item');
+
+        if (navMenu.classList.contains('active')) {
+            // Scroll blokkeren
+            document.body.classList.add('no-scroll');
+
+            // Fade-in effect per item
+            navItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 100}ms`;
+            });
+        } else {
+            // Scroll weer toestaan
+            document.body.classList.remove('no-scroll');
+
+            // Reset delays
+            navItems.forEach((item) => {
+                item.style.transitionDelay = '0ms';
+            });
         }
+    });
+
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('open');
+            navMenu.classList.remove('active');
+        });
     });
 });
 
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
+
 };
-
-
-
-

@@ -4,114 +4,70 @@
 }
 
 body {
-    background-color: #000;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
+}
 
-
+body.no-scroll {
+    overflow: hidden;
 }
 
 body.menu-open {
     overflow: hidden;
 }
 
-
 html {
-    display: block;
     scroll-behavior: auto;
     font-size: 100%;
 }
 
+html,
+body {
+    overflow-x: hidden;
+}
 
+.fade-in-section {
+    opacity: 0;
+    transform: translate(-20px);
+    /* ietsje omhoog starten */
+    transition: opacity 2s ease-out, transform 2s ease-out;
+    will-change: opacity, transform;
+}
+
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translate(0);
+    /* terug op normale plek */
+}
 
 /* Algemene container */
 .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.125rem;
-    padding-right: 1.125rem;
-
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
 
 }
 
-.fade-in-on-scroll {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
+/*  -- Style Here -- */
 
-.fade-in-on-scroll.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-section {
-    scroll-margin-top: 4rem;
-}
-
-#projects {
-    scroll-margin-top: 3rem;
-}
-
-/*--------------------------------------------------------*/
-/*popup*/
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
-
-.popup-content {
-    background: white;
-    color: black;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    max-width: 90%;
-    text-align: center;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
-    font-family: Montserrat, sans-serif;
-    font-size: 1rem;
-}
-
-.popup-content button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: black;
-    color: white;
-    border: none;
-    border-radius: 0.25rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/*-------------------------------------------------------*/
-/*-- 01_HEADER --*/
-header {
-    width: 100%;
-    top: 0;
-    position: sticky;
-    z-index: 1100;
-}
-
+/* -- 01_Header -- */
 .header-box {
-    width: 100%;
-    height: 3.75rem;
-    background-color: black;
+    position: fixed;
     display: flex;
-    align-items: center;
-    z-index: 1200;
+    width: 100%;
+    max-width: 100vw;
+    min-height: 60px;
+    height: auto;
+    background-color: black;
+    z-index: 1100;
 }
 
 .header-box .container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -128,10 +84,6 @@ header {
     cursor: pointer;
 }
 
-/* menu toggle with animation "X" */
-
-
-/*basic styles for bars*/
 .menu-toggle path {
     transition: all 0.3s ease;
     transform-origin: center;
@@ -150,615 +102,456 @@ header {
     opacity: 0;
 }
 
-
-.main-menu ul {
+.header-nav {
     display: flex;
-    position: absolute;
-    padding-top: 6rem;
-    padding-left: 1.3125rem;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 999;
+    flex-direction: column;
+    justify-content: center;
     opacity: 0;
     transform: translateX(-100%);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    flex-direction: column;
-    width: 100%;
-    height: 100svh;
-    background-color: black;
-    list-style: none;
-    margin: 0;
-    gap: 2.4375rem;
-
+    transition: all 0.4s ease-in-out;
+    pointer-events: none;
 }
 
-.main-menu li {
-    transform: translateX(-100%);
-    transition: transform 1.5s ease, opacity 1.5s ease;
+.header-nav.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
 }
 
-.main-menu.open ul {
+.header-nav_item {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 1.5s ease;
+}
 
+
+.header-nav.active .header-nav_item {
     opacity: 1;
     transform: translateX(0);
 }
 
-.main-menu.open li {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.main-menu a {
-    color: #FFF;
-    font-family: Outfit, sans-serif;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 100;
-    line-height: normal;
-    text-decoration: none;
-    position: relative;
-    transition: color 0.3s ease;
-
-}
-
-
-.main-menu span {
-    color: #FFF;
-    font-family: Outfit, sans-serif;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-/*-------------------------------------------------------*/
-/*-- 02_HERO --*/
-
-.hero-background {
-    transform: translateY(20px);
-    animation: fadeInHero 0.8s ease-out forwards;
-    animation-delay: 0.2s;
-
-
-    background-image: url('Assets/02_phone/02_image/background-foto.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    min-height: 100svh;
-    padding-bottom: 0.6875rem;
-}
-
-.hero-content {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInHero 0.8s ease-out forwards;
-    animation-delay: 0.2s;
-
-    padding-top: 16.66375rem;
+.nav-wrapper ul {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    padding: 20px;
+    gap: 2.5rem;
 
 }
 
-@media (min-height: 53.25rem) {
-    .hero-content {
-        padding-top: 26.66375rem;
-    }
-}
-
-
-
-@keyframes fadeInHero {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hero-title {
-    color: #FFF;
-    text-align: center;
-    text-shadow: 4px 4px 100px rgba(255, 255, 255, 0.25);
-    font-family: Outfit;
-    font-size: 1.6875rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-
-
-
-
-.hero-subtitle {
-    color: #FFF;
-    font-family: Outfit;
-    font-size: 1.1875rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-
-
-
-.hero-content p {
-    color: #FFF;
-    font-family: Outfit;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.link-contact-btn {
-    outline: none;
-    background: none;
-    color: white !important;
-    text-align: center;
-    font-family: outfit, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-
-    border: 2px solid grey;
-    padding: 10px;
-    border-radius: 0.75rem;
-    background: linear-gradient(to bottom, #333333, #000000);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    display: inline-block;
-    width: fit-content;
-    align-self: center;
+.header-nav_item {
     text-decoration: none;
-    transition:
-        transform 0.1s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
-    cursor: pointer;
-}
-
-.link-contact-btn:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-.link-contact-btn:active {
-    transform: scale(0.96);
-    background: linear-gradient(to bottom, #1a1a1a, #000000);
-    /* darker gradient */
-    box-shadow: 0 0 14px rgba(255, 255, 255, 0.3);
-    /* subtle glow */
-}
-
-
-
-
-.hero-content a {
     color: inherit;
 }
 
-
-
-/*-------------------------------------------------------*/
-/*-- 03_QUALITY --*/
-/*fast*/
-.quality-fast-background {
-    width: 100%;
-    height: auto;
-    background-color: #d9d9d9;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.quality-fast-content {
-    padding-top: 80px;
-    color: #000;
-    font-family: Outfit, sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.28125rem;
-    flex-direction: column;
-    height: auto;
-}
-
-.quality-fast-content span {
-    color: #000;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
-    font-family: Outfit;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 9px;
-}
-
-.image-mac {
-    align-self: flex-end;
-    width: 100%;
-    max-width: 20.3125rem;
-    height: 13.4375rem;
-}
-
-/*responsive*/
-.quality-responsive-background {
-    max-width: 100%;
-    height: auto;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.quality-responsive-content {
-    padding-top: 5rem;
-    color: #FFF;
-    font-family: Outfit, sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.28125rem;
-    flex-direction: column;
-    height: auto;
-}
-
-.quality-responsive-content span {
+.nav-wrapper li {
+    list-style: none;
     color: white;
-    text-shadow: 2px 2px 6px rgba(255, 255, 255, 1);
-    font-family: Outfit;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 9px;
-}
-
-.image-iphone {
-    align-self: flex-end;
-    width: 100%;
-    max-width: 20.3125rem;
-    height: 21.8125rem;
-}
-
-/*handcraft*/
-.quality-handcraft-background {
-    width: 100%;
-    height: auto;
-    background-color: #d9d9d9;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.quality-handcraft-content {
-    padding-top: 5rem;
-    color: #000;
-    font-family: Outfit, sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.28125rem;
-    flex-direction: column;
-    height: auto;
-}
-
-.quality-handcraft-content span {
-    color: #000;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
-    font-family: Outfit, sans-serif;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 9px;
-}
-
-.image-desktop {
-    align-self: flex-end;
-    width: 100%;
-    max-width: 20.3125rem;
-    height: 16.75rem;
-}
-
-/*-------------------------------------------------------*/
-/*-- 04_PROJECTS --*/
-
-
-
-/*-------------------------------------------------------*/
-/*-- 05_WHYCNC --*/
-
-.whycnc-background {
-    width: 100%;
-    height: auto;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-}
-
-.whycnc-content {
-    padding-top: 5rem;
-
-}
-
-.whycnc-title {
-    color: #F5F5F5;
-    font-family: Outfit;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 100%;
-    /* 32px */
-    letter-spacing: 8px;
-}
-
-.whycnc-content h1 span {
-    color: #F5F5F5;
-    text-shadow: none;
-    font-family: Outfit;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 100%;
-    letter-spacing: 3.75px;
-}
-
-.whycnc-title>.delete {
-    opacity: 0;
-}
-
-.whycnc-content p {
-    color: #F5F5F5;
-    font-family: Outfit;
-    font-size: 0.8125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-/*-------------------------------------------------------*/
-/*slider*/
-
-.slider {
-    width: 100%;
-    min-width: 320px;
-    margin-inline: auto;
-    position: relative;
-    height: 50px;
-    margin-top: 1rem;
-    overflow: hidden;
-}
-
-@keyframes scrolleft {
-
-    to {
-        left: -200px;
-    }
-}
-
-.item {
-    border: 2px #F5F5F5;
-    width: 100%;
-    height: auto;
-    position: absolute;
-    left: 100%;
-    animation: scrolleft;
-    animation-duration: 10s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-
-}
-
-.item1 {
-    animation-delay: calc(30s / 7 * (8 - 1) * -1);
-}
-
-.item2 {
-    animation-delay: calc(30s / 7 * (8 - 2) * -1);
-}
-
-.item3 {
-    animation-delay: calc(30s / 7 * (8 - 3) * -1);
-}
-
-.item4 {
-    animation-delay: calc(30s / 7 * (8 - 4) * -1);
-}
-
-.item5 {
-    animation-delay: calc(30s / 7 * (8 - 5) * -1);
-}
-
-.item6 {
-    animation-delay: calc(30s / 7 * (8 - 6) * -1);
-}
-
-.item7 {
-    animation-delay: calc(30s / 7 * (8 - 7) * -1);
+    font-family: 'barlow condensed', sans-serif;
+    font-size: 28px;
 }
 
 
-/*-------------------------------------------------------*/
-/*-- 06_ABOUT ME --*/
-.about-me-background {
-    width: 100%;
-    height: auto;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-}
-
-
-
-.about-me-content h1 {
-    color: #FFF;
+.nav-wrapper li span {
     font-family: outfit, sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
     font-weight: 800;
-    line-height: 100%;
-    /* 24px */
 }
 
-.about-me-content p {
-    color: #FFF;
-    font-family: Outfit;
-    font-size: 0.8125rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
 
-.about-me-content img {
-    width: 100%;
-    height: auto;
-    border-radius: 25px;
-    opacity: 75%;
-    z-index: 1;
-}
 
-/*-------------------------------------------------------*/
-/*-- 07_CONTACT ME--*/
-
-.contact-me-background {
+/* -- 02_HERO -- */
+.hero-box {
+    background-image: url('./Assets/02_phone/02_image/background-foto.jpg');
     width: 100%;
     height: 100svh;
-    min-height: 30.5rem;
-    background-color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.hero-box .container {
     display: flex;
     flex-direction: column;
-    padding-bottom: 1.5rem;
-    align-items: flex-start;
-    justify-content: space-evenly;
     text-align: center;
-
 }
 
-
-
-.contact-me-info {
-    margin-top: 5rem;
-
+.hero-content {
+    position: relative;
+    top: 21rem;
 }
 
-@media (min-height: 53.25rem) {
-    .contact-me-info {
-        margin-top: 12rem;
-    }
-}
-
-.contact-me-info h1 {
-    color: #000;
-    font-family: Outfit;
+.hero-content h1 {
+    color: #FFF;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9);
+    font-family: Outfit, sans-serif;
     font-size: 2rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 100%;
-    /* 32px */
+    line-height: normal;
 }
 
-@media (min-height: 53.25rem) {
-    .contact-me-info h1 {
-        font-size: 4rem;
-    }
-
-}
-
-
-.contact-me-info p {
-    color: #000;
-    font-family: Outfit;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 100%;
-    /* 23px */
-    letter-spacing: 5.75px;
-}
-
-@media (min-height: 53.25rem) {
-    .contact-me-info p {
-        font-size: 2rem;
-    }
-
-}
-
-.contact-me-info>.phone {
-    color: #000;
-    font-family: Outfit;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 100%;
-    /* 23px */
-    padding-top: 2.5rem;
-}
-
-@media (min-height: 53.25rem) {
-    .contact-me-info>.phone {
-        font-size: 1.5rem;
-    }
-
-}
-
-.contact-me-info>.mail {
-    color: #000;
-    font-family: Outfit;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 100%;
-    /* 23px */
-    padding-top: 1.25rem;
-}
-
-@media (min-height: 53.25rem) {
-    .contact-me-info>.mail {
-        font-size: 1.5rem;
-    }
-
-}
-
-.logo-linkedin {
-    width: 100%;
-    max-width: 3.5rem;
-    height: auto;
-    padding-top: 50px;
-}
-
-@media (min-height: 53.25rem) {
-    .logo-linkedin {
-        max-width: 5rem;
-    }
-
-}
-
-/*-------------------------------------------------------*/
-/*-- 08_FOOTER --*/
-.footer-box {
-    background-color: #000;
-    display: flex;
+.hero-content p {
+    color: #FFF;
     text-align: center;
-    align-items: center;
-    height: auto;
-    min-height: 5.625rem;
-    width: 100%;
-
+    font-family: Outfit, sans-serif;
+    font-size: 0.85rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
-
-
-.footer-content p {
+.hero-content span {
     color: #FFF;
     font-family: Outfit, sans-serif;
-    font-size: 8px;
+    font-size: 0.85rem;
     font-style: normal;
-    font-weight: 200;
-    line-height: 100%;
-    /* 8px */
-    text-decoration: none;
+    font-weight: 600;
+    line-height: normal;
+}
 
+/* -- 03_QUALITY -- */
+.quality1-box {
+    background-color: #F5F5F5;
+    width: 100%;
+    height: auto;
+    min-height: 35.5rem;
+}
+
+.quality1-box .container {
+    display: flex;
+    flex-direction: column;
+}
+
+.quality1-content .gebruiksvriendelijke-foto {
+    width: 100%;
+    min-height: 14.125rem;
+    height: auto;
+}
+
+.quality1-content {
+    position: relative;
+    padding-top: 5rem;
+}
+
+.quality1-content h1 {
+    color: #000;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    font-family: Outfit, sans-serif;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.quality1-content p {
+    color: #000;
+    font-family: Outfit, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.quality2-box {
+    background-color: black;
+    width: 100%;
+    height: auto;
+}
+
+.quality2-box .container {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.quality2-content {
+    position: relative;
+    margin-top: 6.25rem;
+}
+
+.quality2-content h1 {
+    color: white;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9);
+    font-family: Outfit, sans-serif;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.quality2-content p {
+    color: white;
+    font-family: Outfit, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.quality2-content .snelleWebsite-foto {
+    position: relative;
+    bottom: -0.2375rem;
+    width: 100%;
+    min-height: 14.125rem;
+    height: auto;
+}
+
+.quality3-box {
+    background-color: #F5F5F5;
+    width: 100%;
+    height: auto;
+}
+
+.quality3-box .container {
+    display: flex;
+    flex-direction: column;
+}
+
+.quality3-content {
+    position: relative;
+    margin-top: 6.25rem;
+}
+
+.quality3-content h1 {
+    color: #000;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    font-family: Outfit, sans-serif;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.quality3-content p {
+    color: black;
+    font-family: Outfit, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+
+}
+
+.quality3-content .mobilevriendelijk-foto {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 13.3125rem;
+    left: 40px;
+    bottom: -0.239rem;
+}
+
+/* -- 04_Contact -- */
+.contact-box {
+    background-color: #5b5b5b;
+    width: 100%;
+    height: auto;
+}
+
+.contact-box .container {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info {
+    position: relative;
+    margin-top: 6.25rem;
+}
+
+.contact-info h1 {
+    color: #FFF;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9);
+    font-family: Outfit, sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.contact-info h3 {
+    margin-top: -1.25rem;
+    color: #FFF;
+    font-family: Outfit, sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.contact-info p {
+    color: #FFF;
+    font-family: Outfit, sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.links {
+    display: flex;
+    gap: 1.5rem;
+    padding-bottom: 2.0635rem;
+}
+
+/* -- 05_footer -- */
+.footer-box {
+    width: 100%;
+    height: auto;
+    min-height: 7.5rem;
+    background-color: black;
+    align-content: center;
+}
+
+.footer-box .container {
+    display: flex;
+    text-align: center;
+}
+
+.footer-box .footer-content {
+    color: #F5F5F5;
+    text-align: center;
+    font-family: Outfit, sans-serif;
+    font-size: 0.6875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/*-------------------------------------------*/
+/*About Page*/
+#about {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: black;
+    background-repeat: no-repeat;
+
+
+}
+
+#about img {
+    width: 100%;
+    height: 100svh;
+}
+
+#about .content {
+    position: relative;
+    margin-top: 6.25rem;
+}
+
+#about .content h1 {
+    color: white;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9);
+    font-family: Outfit, sans-serif;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#about .content p {
+    color: white;
+    font-family: Outfit, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+/*-------------------------------------------*/
+/*whycnc page*/
+#whycnc {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100svh;
+    min-height: 31.75rem;
+    background-color: black;
+    background-repeat: no-repeat;
+}
+
+#whycnc .content {
+    position: relative;
+    margin-top: 6.25rem;
+}
+
+#whycnc .content h1 {
+    color: white;
+    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9);
+    font-family: Outfit, sans-serif;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#whycnc .content h1 span {
+    color: white;
+    font-weight: 900;
+}
+
+#whycnc .content p {
+    color: white;
+    font-family: Outfit, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+#whycnc .content p span {
+    font-weight: 800;
+}
+
+#watikdoe {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100svh;
+    min-height: 31.75rem;
+    background-color: white;
+    background-repeat: no-repeat;
+}
+
+#watikdoe .content {
+    position: relative;
+    margin-top: 6.25rem;
+}
+
+#watikdoe .content h2 {
+    color: black;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+    font-family: Outfit, sans-serif;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#watikdoe .content p {
+    color: black;
+    font-family: Outfit, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+#watikdoe .content ul {
+    list-style: none;
+
+}
+
+#watikdoe .content li {
+    color: black;
+    font-family: Outfit, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
