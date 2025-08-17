@@ -2,8 +2,10 @@
     "name": "Code&Chill",
     "short_name": "Code&Chill",
     "description": "Betaalbare en professionele websites voor KMO's, startups en internationale klanten. Snelle, moderne en op maat gemaakte webdesign oplossingen.",
-    "start_url": "/",
+    "start_url": "/index-nl.html",
+    "scope": "/",
     "display": "standalone",
+    "orientation": "portrait",
     "background_color": "#111111",
     "theme_color": "#111111",
     "icons": [
@@ -15,6 +17,11 @@
         {
             "src": "/android-chrome-192x192.png",
             "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
             "type": "image/png"
         },
         {
