@@ -195,5 +195,35 @@ const io = new IntersectionObserver((entries, obs) => {
 revealEls.forEach(el => io.observe(el));
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    const popup = document.getElementById("popup");
+    const closeBtn = document.getElementById("popup-close");
+    const title = document.getElementById("popup-title");
+    const message = document.getElementById("popup-message");
+
+    // Detect language from page
+    let lang = document.documentElement.lang; // "nl-BE" or "en-GB"
+
+    if (lang.startsWith("nl")) {
+        title.textContent = "Belangrijk bericht";
+        message.textContent = "Deze website is momenteel geoptimaliseerd voor mobiele schermen. De desktopversie en de Engelse website zijn nog in ontwikkeling.";
+    } else {
+        title.textContent = "Important Notice";
+        message.textContent = "This website is currently optimized for mobile devices. The desktop version and the English website are still under development.";
+    }
+
+    // Show popup only on first visit
+    if (!localStorage.getItem("popupSeen")) {
+        popup.style.display = "flex";
+        localStorage.setItem("popupSeen", "true");
+    }
+
+    // Close popup
+    closeBtn.addEventListener("click", () => {
+        popup.style.display = "none";
+    });
+});
+
+
 
 
