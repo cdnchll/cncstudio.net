@@ -1,43 +1,21 @@
-/* Base: Mobile styles first */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
+    background-color: black;
 }
 
-
-
-body.menu-open {
+body.no-scroll {
     overflow: hidden;
 }
 
 html {
-    scroll-behavior: auto;
-    font-size: 100%;
-}
 
-html,
-body {
-    overflow-x: hidden;
-}
-
-
-.fade-in-section {
-    opacity: 0;
-    transform: translate(-20px);
-    /* ietsje omhoog starten */
-    transition: opacity 2s ease-out, transform 2s ease-out;
-    will-change: opacity, transform;
-}
-
-.fade-in-section.visible {
-    opacity: 1;
-    transform: translate(0);
-    /* terug op normale plek */
+    font-size: 16px;
+    /* basis lettergrootte */
 }
 
 /* Algemene container */
@@ -50,76 +28,168 @@ body {
 
 }
 
-/*popup*/
-/* Hele overlay */
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* donkere achtergrond */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+/* basis: verstopt + klein beetje naar beneden */
+.reveal {
     opacity: 0;
-    pointer-events: none;
-    animation: fadeIn 0.5s forwards;
+    transform: translateY(0px);
+    transition: opacity 2s ease, transform 2s ease;
+    will-change: opacity, transform;
 }
 
-/* De inhoud (witte box) */
-.popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-    text-align: center;
-    max-width: 90%;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    font-family: sans-serif;
+/* zodra in beeld → zichtbaar + op z’n plek */
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
 }
 
-/* Fade-in animatie */
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        pointer-events: auto;
+/* optionele richtingen via extra class */
+.reveal.fade-up {
+    transform: translateY(0px);
+}
+
+.reveal.fade-down {
+    transform: translateY(0px);
+}
+
+.reveal.fade-left {
+    transform: translateX(0px);
+}
+
+.reveal.fade-right {
+    transform: translateX(0px);
+}
+
+/* kinderen met vertraging (optioneel) */
+.reveal [data-reveal-child] {
+    opacity: 0;
+    transform: translateY(0px);
+    transition: opacity .5s ease, transform .5s ease;
+}
+
+.reveal.is-visible [data-reveal-child] {
+    opacity: 1;
+    transform: none;
+}
+
+section {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* als iemand ‘minder animaties’ aan heeft */
+@media (prefers-reduced-motion: reduce) {
+
+    .reveal,
+    .reveal [data-reveal-child] {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
     }
 }
 
-/*  -- Style Here -- */
 
-/* -- 01_Header -- */
-.header-box {
-    position: fixed;
+
+
+
+
+/*STYLE STARTS HERE*/
+/*TAAL KEUZEN PAGE*/
+.talen-page {
     display: flex;
-    width: 100%;
-    max-width: 100vw;
-    min-height: 60px;
-    height: auto;
-    background-color: black;
-    z-index: 1100;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5.25rem;
+    gap: 3.75rem;
 }
 
-.header-box .container {
+.taal-opties h1 {
+    padding-bottom: 3.25rem;
+    color: #E6E6E6;
+    text-align: center;
+    font-family: Outfit;
+    font-size: 1.1875rem;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+}
+
+.talen-links {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.94rem;
+}
+
+.talen-links a {
+    cursor: pointer;
+    color: #F5F5F5;
+    text-align: center;
+    font-family: Outfit;
+    font-size: 1.4375rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+
+}
+
+/* 1) Herbruikbare utility */
+.grow-10 {
+    display: inline-block;
+    /* nodig zodat transform netjes werkt op <a>/<span> */
+    transition: transform 150ms ease;
+    /* soepel */
+    will-change: transform;
+    /* performance hint */
+    transform-origin: center;
+    /* vanuit het midden schalen */
+    cursor: pointer;
+    /* handje */
+}
+
+/* 2) Hover + toetsenbord-focus */
+.grow-10:hover,
+.grow-10:focus-visible {
+    transform: scale(1.10);
+    /* +10% */
+}
+
+/* 3) Respecteer “reduce motion” */
+@media (prefers-reduced-motion: reduce) {
+    .grow-10 {
+        transition: none;
+    }
+
+    .grow-10:hover,
+    .grow-10:focus-visible {
+        transform: none;
+    }
+}
+
+/*01-HEADER*/
+
+.header {
+    width: 100%;
+    position: fixed;
+    background-color: black;
+    z-index: 1000;
+}
+
+.header-box {
+    display: flex;
+    width: 100%;
+    height: 3.75rem;
     align-items: center;
     justify-content: space-between;
 }
 
-.logo-cnc {
-    width: 100%;
-    max-width: 8.6875rem;
-    height: auto;
-}
 
 .menu-toggle {
-    width: 100%;
-    max-width: 1.9375rem;
-    height: auto;
     cursor: pointer;
 }
+
 
 .menu-toggle path {
     transition: all 0.3s ease;
@@ -139,477 +209,996 @@ body {
     opacity: 0;
 }
 
-.header-nav {
-    display: flex;
-    position: fixed;
+.menu-toggle:focus {
+    outline: none;
+}
+
+.menu-toggle:focus-visible {
+    outline: 2px solid white;
+    /* or your preferred style for keyboard users */
+}
+
+.site-nav {
     width: 100%;
-    height: 100%;
-    background-color: #000;
-    z-index: 999;
-    flex-direction: column;
-    justify-content: center;
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: all 0.4s ease-in-out;
-    pointer-events: none;
-}
-
-.header-nav.active {
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: auto;
-}
-
-.header-nav_item {
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 1.5s ease;
-}
-
-
-.header-nav.active .header-nav_item {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.nav-wrapper ul {
+    height: 100svh;
+    background-color: black;
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    gap: 2.5rem;
+    padding-top: 3.19rem;
+    position: fixed;
+    opacity: 0;
+    transform: translateX(-2rem);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.35s ease, opacity 0.35s ease, visibility 0s linear 0.35s;
+    z-index: 1100;
+}
+
+.site-nav a {
+    transition: color 0.3s ease-out;
+}
+
+.site-nav a:hover {
+    color: #CC541A;
+}
+
+.site-nav a:active {
+    color: white;
+}
+
+.site-nav .over-sublist a {
+    transition: color 0.3s ease-out;
+}
+
+.site-nav .over-sublist a:hover {
+    color: #CC541A;
+}
+
+.site-nav .over-sublist a:active {
+    color: white;
+}
+
+.nav-open .site-nav {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+/* (Optional) reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .site-nav {
+        transition: none;
+        transform: none;
+    }
+}
+
+.site-nav ul {
+    color: #FFF;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    list-style: none;
+
+
 
 }
 
-.header-nav_item {
+.site-nav a {
     text-decoration: none;
     color: inherit;
 }
 
-.nav-wrapper li {
-    list-style: none;
-    color: white;
-    font-family: 'barlow condensed', sans-serif;
-    font-size: 28px;
-}
-
-
-.nav-wrapper li span {
-    font-family: outfit, sans-serif;
-    font-weight: 800;
-}
-
-
-
-/* -- 02_HERO -- */
-.hero-box {
-    background-image: url('./Assets/02_phone/02_image/background-foto.jpg');
-    width: 100%;
-    height: 100svh;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-}
-
-.hero-box::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    /* Donkere overlay */
-    z-index: 1;
-}
-
-.hero-box .container,
-.hero-box .hero-content {
-    position: relative;
-    z-index: 2;
-}
-
-.hero-box .container {
+.nav-wrap {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    gap: 2rem;
 }
 
-.hero-content {
-    position: relative;
-    top: 21rem;
+/* Container transition (geen display:none gebruiken) */
+.over-sublist {
+    max-height: 0;
+    opacity: 0;
+    /* fade van hele blok */
+    overflow: hidden;
+    list-style: none;
+    margin: 0;
+    padding-left: 1rem;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
 }
 
-.hero-content h1 {
+/* Elk item start onzichtbaar en iets omhoog */
+.over-sublist>li {
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Open state: container en items zichtbaar */
+.has-sublist.open .over-sublist {
+    max-height: 500px;
+    /* of hoger indien nodig */
+    opacity: 1;
+}
+
+/* Stagger: per item vertraging bij openen */
+.has-sublist.open .over-sublist>li:nth-child(1) {
+    transition-delay: 60ms;
+}
+
+.has-sublist.open .over-sublist>li:nth-child(2) {
+    transition-delay: 120ms;
+}
+
+.has-sublist.open .over-sublist>li:nth-child(3) {
+    transition-delay: 180ms;
+}
+
+.has-sublist.open .over-sublist>li:nth-child(4) {
+    transition-delay: 240ms;
+}
+
+/* Wanneer open, eindtoestand voor items */
+.has-sublist.open .over-sublist>li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.over-sublist a {
     color: #FFF;
-    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9);
-    font-family: Outfit, sans-serif;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.hero-content p {
-    color: #FFF;
-    text-align: center;
-    font-family: Outfit, sans-serif;
-    font-size: 0.85rem;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
-.hero-content span {
+.nav-wrap span {
     color: #FFF;
     font-family: Outfit, sans-serif;
-    font-size: 0.85rem;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.over-sublist span {
+    color: #FFF;
+    font-family: Outfit;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.privacy-voorwaarden {
+    padding-top: 2.69rem;
+    padding-left: 2.5rem;
+}
+
+.privacy-voorwaarden p {
+    color: #FFF;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.social-links-nav {
+    padding-top: 1rem;
+    padding-left: 2.5rem;
+}
+
+
+/*02-HERO*/
+
+
+.hero-box img {
+    margin-top: 60px;
+    width: 100%;
+    height: 280px;
+    aspect-ratio: auto;
+    object-fit: cover;
+
+}
+
+.hero-box h1 {
+    padding-top: 0.56rem;
+    color: #E6E6E6;
+    font-family: Montserrat;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 1.9375rem;
+}
+
+.hero-box span {
+    color: #E6E6E6;
+    font-family: Montserrat;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.9375rem;
+}
+
+.contact-link {
+    margin-top: 2.56rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-box a {
+    color: #F5F5F5;
+    text-align: center;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    transition: color 0.3s ease-out;
+    text-decoration: underline;
+}
+
+.hero-box a:hover {
+    color: #CC541A;
+}
+
+.hero-box a:active {
+    color: black;
+    /* 0.6s voor 2x knipperen */
+}
+
+/*03-FREELANCE*/
+.freelance {
+    width: 100%;
+    height: auto;
+    background: #D9D9D9;
+    margin-top: 1.87rem;
+    padding-bottom: 3.5rem;
+}
+
+.freelance-box h1 {
+    padding-top: 4.75rem;
+    color: #191919;
+    font-family: Montserrat;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.freelance-box p {
+    padding-top: 1.5rem;
+    color: #4C4C4C;
+    font-family: Montserrat;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.voordelen-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.voordelen-wrap>p {
+    color: #555b61;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+}
+
+.diensten-link {
+    margin-top: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.freelance-box a {
+
+    color: #000;
+    text-align: center;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    transition: color 0.3s ease-out;
+}
+
+.freelance-box a:hover {
+    color: #CC541A;
+}
+
+.freelance-box a:active {
+    color: black;
+    /* 0.6s voor 2x knipperen */
+}
+
+
+
+/*04-CONTACT ME*/
+.contact {
+    background: #D9D9D9;
+}
+
+.contact img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.contact-me-box {
+    padding-top: 4.75rem;
+}
+
+.contact-me-box h1 {
+    color: #191919;
+    font-family: Montserrat, sans-serif;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.contact-me-box p {
+    padding-top: 1.5rem;
+    color: #4C4C4C;
+    font-family: Montserrat;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.contact-me-box span {
+    color: #4C4C4C;
+    font-family: Montserrat;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.contact-me-box .voordelen-nowrap p {
+    color: #555b61;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* zacht en subtiel */
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
 }
 
-/* -- 03_QUALITY -- */
-.quality1-box {
-    background-color: #5b5b5bb0;
-    width: 100%;
-    height: auto;
-    min-height: 35.5rem;
-}
 
-.quality1-box .container {
-    display: flex;
-    flex-direction: column;
-}
 
-.quality1-content .gebruiksvriendelijke-foto {
-    width: 100%;
-    min-height: 14.125rem;
-    height: auto;
-}
-
-.quality1-content {
-    position: relative;
-    padding-top: 5rem;
-}
-
-.quality1-content h1 {
-    color: white;
-    text-shadow: 2px 2px 10px rgba(250, 250, 250, 0.6);
-    font-family: Outfit, sans-serif;
-    font-size: 1.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.quality1-content p {
-    color: white;
-    font-family: Outfit, sans-serif;
+.contact-me-box .contact-me-footer {
+    color: #4C4C4C;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: Montserrat;
     font-size: 1rem;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 800;
     line-height: normal;
+
 }
 
-.quality2-box {
-    background-color: black;
-    width: 100%;
-    height: auto;
+.contact-me-box {
+    padding-bottom: 2.25rem;
 }
 
-.quality2-box .container {
-    display: flex;
-    flex-direction: column;
+/*05-CONTACT INFO*/
+.contact-info-box {
+    padding-top: 4.75rem;
 }
 
-
-
-.quality2-content {
-    position: relative;
-    margin-top: 6.25rem;
-}
-
-.quality2-content h1 {
-    color: white;
-    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9);
-    font-family: Outfit, sans-serif;
-    font-size: 1.75rem;
+.contact-info-box h1 {
+    color: #E6E6E6;
+    font-family: Montserrat, sans-serif;
+    font-size: 22px;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 500;
     line-height: normal;
+    padding-bottom: 2rem;
 }
 
-.quality2-content p {
-    color: white;
-    font-family: Outfit, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-
-.quality2-content .snelleWebsite-foto {
-    position: relative;
-    bottom: -0.2375rem;
-    width: 100%;
-    min-height: 14.125rem;
-    height: auto;
-}
-
-.quality3-box {
-    background-color: #F5F5F5;
-    width: 100%;
-    height: auto;
-}
-
-.quality3-box .container {
-    display: flex;
-    flex-direction: column;
-}
-
-.quality3-content {
-    position: relative;
-    margin-top: 6.25rem;
-}
-
-.quality3-content h1 {
-    color: #000;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
-    font-family: Outfit, sans-serif;
-    font-size: 1.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.quality3-content p {
-    color: black;
-    font-family: Outfit, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-
-}
-
-.quality3-content .mobilevriendelijk-foto {
-    position: relative;
-    width: 100%;
-    height: auto;
-    min-height: 13.3125rem;
-    left: 40px;
-    bottom: -0.239rem;
-}
-
-/* -- 04_Contact -- */
-.contact-box {
-    background-color: black;
-    width: 100%;
-    height: auto;
-}
-
-.contact-box .container {
-    display: flex;
-    flex-direction: column;
-    ;
-}
-
-.contact-info {
-    position: relative;
-    margin-top: 6.25rem;
-}
-
-.contact-info h1 {
-    color: #FFF;
-    font-family: Outfit, sans-serif;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.contact-info h3 {
-    margin-top: -1.25rem;
-    color: #FFF;
-    font-family: Outfit, sans-serif;
-    font-size: 1.125rem;
+.contact-info-box p {
+    color: #B3B3B3;
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    padding-bottom: 1rem;
 }
 
-.contact-info p {
-    color: #FFF;
-    font-family: Outfit, sans-serif;
-    font-size: 1.125rem;
+.sitemap-title {
+    padding-top: 3.25rem;
+}
+
+.sitemap-links {
+    text-decoration: none;
+    list-style: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 0.62rem;
+
+}
+
+.sitemap-links a:hover {
+    color: #CC541A;
+}
+
+.sitemap-links a:active {
+    color: white;
+}
+
+.sitemap-links a {
+    text-decoration: none;
+    list-style: none;
+    color: inherit;
+    color: #B3B3B3;
+    font-family: Montserrat;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    transition: color 0.3s ease-out;
 }
 
-.links {
-    display: flex;
-    gap: 1.5rem;
-    padding-bottom: 2.0635rem;
+.sitemap-links span {
+    color: #F5F5F5;
+    font-family: Outfit;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
 }
 
+/*06-FOOTER*/
+.footer-line {
+    margin-top: 1rem;
+    width: 100%;
+    height: 0.0625rem;
+    background: #F5F5F5;
+    margin-bottom: 1rem;
+}
 
-/* -- 05_footer -- */
-.footer-box {
+.footer-box p {
+    color: #F5F5F5;
+    text-align: center;
+    font-family: Outfit;
+    font-size: 0.625rem;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    padding-bottom: 1rem;
+}
+
+/*06 OVER CODE&CHILL*/
+.over-cnc {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    width: 100%;
-    height: auto;
-    min-height: 7.5rem;
-    background-color: black;
-    align-content: center;
-
+    padding-top: 5.75rem;
 }
 
+.over-cnc h1 {
+    padding-bottom: 1.5rem;
+    color: #F5F5F5;
+    font-family: Montserrat, sans-serif;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
 
+.over-cnc p {
+    padding-bottom: 1.5rem;
+    color: #B3B3B3;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.1rem;
+}
 
-.footer-box .footer-content {
+.over-cnc span {
     color: #F5F5F5;
     font-family: Outfit, sans-serif;
-    font-size: 0.6875rem;
+    font-size: 1.375rem;
     font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-/*-------------------------------------------*/
-/*About Page*/
-#about {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: black;
-    background-repeat: no-repeat;
-
-
-}
-
-#about img {
-    width: 100%;
-    height: 100svh;
-}
-
-#about .content {
-    position: relative;
-    margin-top: 6.25rem;
-}
-
-#about .content h1 {
-    color: white;
-    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9);
-    font-family: Outfit, sans-serif;
-    font-size: 1.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-#about .content p {
-    color: white;
-    font-family: Outfit, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-
-/*-------------------------------------------*/
-/*whycnc page*/
-#whycnc {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    min-height: 31.75rem;
-    background-color: black;
-    background-repeat: no-repeat;
-}
-
-#whycnc .content {
-    position: relative;
-    margin-top: 6.25rem;
-}
-
-#whycnc .content h1 {
-    color: white;
-    text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9);
-    font-family: Outfit, sans-serif;
-    font-size: 1.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-#whycnc .content h1 span {
-    color: white;
-    font-weight: 900;
-}
-
-#whycnc .content p {
-    color: white;
-    font-family: Outfit, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-
-#whycnc .content p span {
     font-weight: 800;
+    line-height: normal;
 }
 
-#watikdoe {
+.iphone-mockup {
+    width: 10.9375rem;
+    height: 23rem;
+    flex-shrink: 0;
+    aspect-ratio: 39/82;
+    box-shadow: 10px 4px 10px 0 rgba(255, 255, 255, 0.30);
+    object-fit: cover;
+    border-radius: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+/*07 OVER MIJ*/
+.overmij-content {
+    padding-top: 5.75rem;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: auto;
-    min-height: 31.75rem;
-    background-color: white;
-    background-repeat: no-repeat;
+    justify-content: center;
 }
 
-#watikdoe .content {
-    position: relative;
-
-}
-
-#watikdoe .content h2 {
-    color: black;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
-    font-family: Outfit, sans-serif;
-    font-size: 1.75rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-#watikdoe .content p {
-    color: black;
-    font-family: Outfit, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-
-#watikdoe .content ul {
-    list-style: none;
-
-}
-
-#watikdoe .content li {
-    color: black;
-    font-family: Outfit, sans-serif;
-    font-size: 1rem;
+.overmij-content h1 {
+    padding-bottom: 1.5rem;
+    color: #F5F5F5;
+    font-family: Montserrat;
+    font-size: 1.375rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
 }
 
-/*klaar*/
+.overmij-content p {
+    padding-bottom: 1rem;
+    color: #B3B3B3;
+    font-family: Montserrat;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.1rem;
+}
+
+.murilo-chilling-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/*08 DIENSTEN*/
+#diensten {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dienst-1-box {
+
+    width: 100%;
+    height: auto;
+    background: #D9D9D9;
+
+}
+
+.dienst-design-creatie {
+    position: relative;
+    padding-top: 5.75rem;
+    text-align: center;
+}
+
+.dienst-design-creatie h1 {
+    color: #191919;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.dienst-design-creatie h3 {
+    padding-top: 2rem;
+    color: #191919;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.dienst-design-creatie p {
+    padding-top: 3.12rem;
+    display: flex;
+    flex-direction: column;
+    color: #191919;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 1rem;
+}
+
+.dienst-design-creatie span {
+    color: #191919;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+.dienst-design-creatie img {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    position: absolute;
+    opacity: 30%;
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+.dienst-2-box {
+
+    width: 100%;
+    height: auto;
+    background: #D9D9D9;
+
+}
+
+.dienst-webontwikkeling {
+    position: relative;
+    text-align: center;
+}
+
+.dienst-webontwikkeling h3 {
+    padding-top: 2rem;
+    color: #191919;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.dienst-webontwikkeling p {
+    padding-top: 3.12rem;
+    display: flex;
+    flex-direction: column;
+    color: #191919;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 1rem;
+}
+
+.dienst-webontwikkeling span {
+    color: #191919;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+.dienst-webontwikkeling img {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    position: absolute;
+    opacity: 30%;
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+
+.dienst-3-box {
+
+    width: 100%;
+    height: auto;
+    background: #D9D9D9;
+
+}
+
+.dienst-seo {
+    position: relative;
+    text-align: center;
+}
+
+.dienst-seo h3 {
+    padding-top: 2rem;
+    color: #191919;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.dienst-seo p {
+    padding-top: 3.12rem;
+    display: flex;
+    flex-direction: column;
+    color: #191919;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 1rem;
+}
+
+.dienst-seo span {
+    color: #191919;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+.dienst-seo img {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    position: absolute;
+    opacity: 30%;
+    width: 100%;
+    height: auto;
+}
+
+/*09 PRIVACY*/
+.privacy-background {
+    background-color: white;
+}
+
+.privacy-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5rem;
+    gap: 1.5rem;
+}
+
+.privacy-content ol,
+li {
+    padding-left: 20px;
+    padding-bottom: 1rem;
+
+}
+
+.privacy-content h1 {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.privacy-content h3 {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-bottom: 1.5rem;
+}
+
+.privacy-content p {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 1rem
+}
+
+.privacy-content li {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.privacy-content span {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+/*10 COOKIE*/
+.cookie-background {
+    background-color: white;
+}
+
+.cookie-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5rem;
+    gap: 1.5rem;
+}
+
+.cookie-content ol,
+li {
+    padding-left: 20px;
+    padding-bottom: 1rem;
+
+}
+
+.cookie-content h1 {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.cookie-content h3 {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-bottom: 1.5rem;
+}
+
+.cookie-content p {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 1rem
+}
+
+.cookie-content li {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.cookie-content span {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+/*11 ALGEMENE VOORWAARDEN*/
+.voorwaarden-background {
+    background-color: white;
+}
+
+.voorwaarden-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5rem;
+    gap: 1.5rem;
+}
+
+.voorwaarden-content ol,
+li {
+    padding-left: 20px;
+    padding-bottom: 1rem;
+
+}
+
+.voorwaarden-content h1 {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.voorwaarden-content h3 {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    padding-bottom: 1.5rem;
+}
+
+.voorwaarden-content p {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 1rem
+}
+
+.voorwaarden-content li {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.voorwaarden-content span {
+    color: #000;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: auto;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}

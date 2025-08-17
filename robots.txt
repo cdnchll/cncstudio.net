@@ -1,0 +1,6 @@
+# Robots.txt for www.cncstudio.net
+
+User-agent: *
+Disallow:
+
+Sitemap: https://www.cncstudio.net/sitemap.xml
