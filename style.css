@@ -221,9 +221,23 @@ section {
     justify-content: space-between;
 }
 
+@media (min-width: 600px) {
+    .cnc-logo {
+        width: 8.925rem;
+
+    }
+}
+
 
 .menu-toggle {
     cursor: pointer;
+}
+
+@media (min-width: 600px) {
+    .menu-toggle {
+        width: 2.7125rem;
+
+    }
 }
 
 
@@ -442,6 +456,8 @@ section {
 
 }
 
+
+
 .hero-box h1 {
     padding-top: 0.56rem;
     color: #E6E6E6;
@@ -452,10 +468,14 @@ section {
     line-height: 1.9375rem;
 }
 
+
+
+
+
 .hero-box span {
     color: #E6E6E6;
     font-family: Montserrat;
-    font-size: 2.5rem;
+    font-size: 8rem;
     font-style: normal;
     font-weight: 700;
     line-height: 1.9375rem;
@@ -479,6 +499,8 @@ section {
     transition: color 0.3s ease-out;
     text-decoration: underline;
 }
+
+
 
 .hero-box a:hover {
     color: #CC541A;
@@ -508,6 +530,8 @@ section {
     line-height: normal;
 }
 
+
+
 .freelance-box p {
     padding-top: 1.5rem;
     color: #4C4C4C;
@@ -517,6 +541,8 @@ section {
     font-weight: 400;
     line-height: normal;
 }
+
+
 
 .voordelen-wrap {
     display: flex;
@@ -536,12 +562,16 @@ section {
 
 }
 
+
+
 .diensten-link {
     margin-top: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+
 
 .freelance-box a {
 
@@ -590,6 +620,8 @@ section {
     line-height: normal;
 }
 
+
+
 .contact-me-box p {
     padding-top: 1.5rem;
     color: #4C4C4C;
@@ -600,6 +632,8 @@ section {
     line-height: normal;
 }
 
+
+
 .contact-me-box span {
     color: #4C4C4C;
     font-family: Montserrat;
@@ -608,6 +642,8 @@ section {
     font-weight: 500;
     line-height: normal;
 }
+
+
 
 .contact-me-box .voordelen-nowrap p {
     color: #555b61;
@@ -622,6 +658,8 @@ section {
 
 
 
+
+
 .contact-me-box .contact-me-footer {
     color: #4C4C4C;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -632,6 +670,8 @@ section {
     line-height: normal;
 
 }
+
+
 
 .contact-me-box {
     padding-bottom: 2.25rem;
@@ -817,7 +857,7 @@ section {
 }
 
 .dienst-1-box {
-
+    border-bottom: 1px solid #191919;
     width: 100%;
     height: auto;
     background: #D9D9D9;
@@ -840,6 +880,8 @@ section {
     line-height: normal;
 }
 
+
+
 .dienst-design-creatie h3 {
     padding-top: 2rem;
     color: #191919;
@@ -850,6 +892,8 @@ section {
     font-weight: 500;
     line-height: normal;
 }
+
+
 
 .dienst-design-creatie p {
     padding-top: 3.12rem;
@@ -863,6 +907,8 @@ section {
     line-height: normal;
     padding-bottom: 1rem;
 }
+
+
 
 .dienst-design-creatie span {
     color: #191919;
@@ -880,14 +926,16 @@ section {
     text-underline-position: from-font;
 }
 
+
+
 .dienst-design-creatie img {
     display: flex;
     flex-direction: column;
     align-self: flex-end;
     position: absolute;
     opacity: 30%;
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 50%;
 }
 
 
@@ -897,7 +945,7 @@ section {
 
     width: 100%;
     height: auto;
-    background: #D9D9D9;
+    background: #191919;
 
 }
 
@@ -908,7 +956,7 @@ section {
 
 .dienst-webontwikkeling h3 {
     padding-top: 2rem;
-    color: #191919;
+    color: #D9D9D9;
     text-align: center;
     font-family: Montserrat, sans-serif;
     font-size: 1.125rem;
@@ -917,11 +965,13 @@ section {
     line-height: normal;
 }
 
+
+
 .dienst-webontwikkeling p {
     padding-top: 3.12rem;
     display: flex;
     flex-direction: column;
-    color: #191919;
+    color: #D9D9D9;
     font-family: Montserrat, sans-serif;
     font-size: 1rem;
     font-style: normal;
@@ -930,8 +980,10 @@ section {
     padding-bottom: 1rem;
 }
 
+
+
 .dienst-webontwikkeling span {
-    color: #191919;
+    color: #D9D9D9;
     text-align: center;
     font-family: Montserrat, sans-serif;
     font-size: 1rem;
@@ -946,14 +998,16 @@ section {
     text-underline-position: from-font;
 }
 
+
+
 .dienst-webontwikkeling img {
     display: flex;
     flex-direction: column;
     align-self: flex-end;
     position: absolute;
     opacity: 30%;
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 50%;
 }
 
 
@@ -984,6 +1038,8 @@ section {
     line-height: normal;
 }
 
+
+
 .dienst-seo p {
     padding-top: 3.12rem;
     display: flex;
@@ -996,6 +1052,8 @@ section {
     line-height: normal;
     padding-bottom: 1rem;
 }
+
+
 
 .dienst-seo span {
     color: #191919;
@@ -1013,14 +1071,16 @@ section {
     text-underline-position: from-font;
 }
 
+
+
 .dienst-seo img {
     display: flex;
     flex-direction: column;
     align-self: flex-end;
     position: absolute;
     opacity: 30%;
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 50%;
 }
 
 /*09 PRIVACY*/
