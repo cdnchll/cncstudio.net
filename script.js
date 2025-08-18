@@ -195,6 +195,11 @@ const io = new IntersectionObserver((entries, obs) => {
 revealEls.forEach(el => io.observe(el));
 
 
+
+
+
+/*popup*/
+
 document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("popup");
     const closeBtn = document.getElementById("popup-close");
@@ -206,10 +211,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (lang.startsWith("nl")) {
         title.textContent = "Belangrijk bericht";
-        message.textContent = "Deze website is momenteel geoptimaliseerd voor mobiele schermen. De desktopversie en de Engelse website zijn nog in ontwikkeling.";
+        message.textContent = "Deze website is momenteel geoptimaliseerd voor mobiele apparaten. De desktopversie is in ontwikkeling.";
     } else {
         title.textContent = "Important Notice";
-        message.textContent = "This website is currently optimized for mobile devices. The desktop version and the English website are still under development.";
+        message.textContent = "This website is currently optimized for mobile devices. A desktop version is under development.";
     }
 
     // Show popup only on first visit
