@@ -2,7 +2,7 @@
     "name": "Code&Chill",
     "short_name": "Code&Chill",
     "description": "Betaalbare en professionele websites voor KMO's, startups en internationale klanten. Snelle, moderne en op maat gemaakte webdesign oplossingen.",
-    "start_url": "/index-nl.html",
+    "start_url": "/index.html",
     "scope": "/",
     "display": "standalone",
     "orientation": "portrait",
