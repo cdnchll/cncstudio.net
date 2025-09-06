@@ -6,74 +6,22 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
   <url>
-    <loc>https://www.cncstudio.net/diensten-nl.html</loc>
+    <loc>https://www.cncstudio.net/over-cnc.html</loc>
     <lastmod>2025-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.cncstudio.net/overcnc-nl.html</loc>
-    <lastmod>2025-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.cncstudio.net/overmij-nl.html</loc>
-    <lastmod>2025-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.cncstudio.net/privacy-nl.html</loc>
-    <lastmod>2025-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.cncstudio.net/voorwaarden-nl.html</loc>
-    <lastmod>2025-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 
-<!-- ENG pages -->
   <url>
-    <loc>https://www.cncstudio.net/index-eng.html</loc>
-    <lastmod>2025-08-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.cncstudio.net/services-eng.html</loc>
-    <lastmod>2025-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.cncstudio.net/aboutcnc-eng.html</loc>
-    <lastmod>2025-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.cncstudio.net/aboutme-eng.html</loc>
-    <lastmod>2025-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.cncstudio.net/privacy-eng.html</loc>
+    <loc>https://www.cncstudio.net/privacy-policy.html</loc>
     <lastmod>2025-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  <url>
-    <loc>https://www.cncstudio.net/serviceagreement-eng.html</loc>
-    <lastmod>2025-08-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+ 
+
 
 </urlset>
 

@@ -1,233 +1,134 @@
-// ───────────────────────────────────────────────────────────────────────────────
-// NAV + SUBLIST + HAMBURGER TOGGLE (met bestaande top/middle/bottom bar classes)
-// ───────────────────────────────────────────────────────────────────────────────
+// Selecteer de menu-toggle button en het nav-menu
+const btn = document.querySelector('.header-nav--toggle');
+const nav = document.getElementById('mainNav');
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Vind de nav (jij gebruikt <nav class="site-nav">)
-    const nav =
-        document.querySelector('nav.site-nav') ||
-        document.getElementById('site-nav') ||
-        document.querySelector('nav');
+// Functie om het menu open/dicht te zetten
+function setOpen(open) {
+    document.body.classList.toggle('nav-open', open);   // Blokkeer scrollen als menu open is
+    document.body.classList.toggle('nav-lock', open);   // Extra scroll lock class (optioneel)
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false'); // Voor toegankelijkheid
+    nav.hidden = !open;         // Verberg menu voor iedereen (ook screenreaders)
+    nav.inert = !open;          // Maakt menu niet-focusbaar als dicht
+    btn.classList.toggle('is-open', open); // Zet hamburger/X animatie goed
+}
 
-    // Eén hamburger SVG met class .menu-toggle
-    const toggles = document.querySelectorAll('.menu-toggle');
+// Start altijd met menu dicht
+setOpen(false);
 
-    // Submenu’s dichtklappen wanneer hele nav sluit
-    const closeAllSublists = () => {
-        document.querySelectorAll('.has-sublist.open').forEach((li) => {
-            const link = li.querySelector('.over-toggle') || li.querySelector('a');
-            const sub = li.querySelector('.over-sublist');
-            if (sub) {
-                if (getComputedStyle(sub).maxHeight === 'none') {
-                    sub.style.maxHeight = sub.scrollHeight + 'px';
-                }
-                requestAnimationFrame(() => {
-                    sub.style.maxHeight = '0px';
-                    sub.style.opacity = '0';
-                });
-            }
-            li.classList.remove('open');
-            if (link) link.setAttribute('aria-expanded', 'false');
-        });
-    };
+// Klik op de menu-toggle button opent/sluit menu
+btn.addEventListener('click', () => setOpen(!document.body.classList.contains('nav-open')));
 
-    // Globale open/close state
-    const setNavState = (open, toggleEl) => {
-        document.body.classList.toggle('nav-open', open);
-        document.body.classList.toggle('no-scroll', open);
+// Sluit menu bij klik op een nav-link
+nav.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link) setOpen(false); // Menu dicht
+});
 
-        // Sync .open op de SVG (stuurt X-animatie aan via CSS)
-        if (toggleEl) {
-            toggleEl.classList.toggle('open', open);
-            toggleEl.setAttribute('aria-expanded', open ? 'true' : 'false');
-        }
-        if (!toggleEl && toggles.length === 1) {
-            const one = toggles[0];
-            one.classList.toggle('open', open);
-            one.setAttribute('aria-expanded', open ? 'true' : 'false');
-        }
+// Sluit menu met Escape-toets
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+});
 
-        if (!open) closeAllSublists();
-    };
+/* -------------------- FORMSPREE AJAX & POPUP -------------------- */
 
-    // Buiten-klik sluit nav
-    document.addEventListener('click', (e) => {
-        if (!document.body.classList.contains('nav-open')) return;
-        const clickedInsideNav = nav && nav.contains(e.target);
-        const clickedToggle = [...toggles].some((t) => t.contains(e.target));
-        if (!clickedInsideNav && !clickedToggle) setNavState(false, null);
-    });
+// Selecteer het formulier (zorg dat je form id="contactForm" heeft)
+const contactForm = document.getElementById('contactForm');
 
-    // ESC sluit nav
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
-            setNavState(false, null);
-        }
-    });
+if (contactForm) {
+    contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault(); // Voorkom standaard versturen en redirect
+        const form = e.target;
 
-    // Init elke .menu-toggle (we voegen GEEN classes toe aan <path> – jij hebt ze al)
-    toggles.forEach((svg) => {
-        // Toegankelijk maken
-        if (!svg.hasAttribute('tabindex')) svg.setAttribute('tabindex', '0');
-        svg.setAttribute('role', 'button');
-        svg.setAttribute('aria-label', 'Menu');
-        svg.setAttribute('aria-expanded', 'false');
+        // voorkom dubbel verzenden
+        if (form.dataset.sending === '1') return;
+        form.dataset.sending = '1';
 
-        // aria-controls koppelen aan nav
-        if (nav) {
-            const navId = nav.id || 'site-nav';
-            if (!nav.id) nav.id = navId;
-            if (!svg.hasAttribute('aria-controls')) svg.setAttribute('aria-controls', navId);
+        // disable submit-knop tijdens versturen
+        const submitBtn = form.querySelector('[type="submit"]');
+        const prevBtnText = submitBtn ? submitBtn.textContent : null;
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Verzenden...';
         }
 
-        // Klik toggelt open/dicht
-        svg.addEventListener('click', () => {
-            const willOpen = !document.body.classList.contains('nav-open');
-            setNavState(willOpen, svg);
-        });
+        const data = new FormData(form);
 
-        // Enter/Spatie ondersteunt toetsenbord
-        svg.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                const willOpen = !document.body.classList.contains('nav-open');
-                setNavState(willOpen, svg);
-            }
-        });
-    });
+        try {
+            const response = await fetch(form.action, {
+                method: form.method || 'POST',
+                body: data,
+                headers: { Accept: 'application/json' }
+            });
 
-    // ────────────────────────────────────────────────────────────────────────────
-    // Links gedrag
-    // - Klik op OVER (top-level in .has-sublist) => nav blijft open, alleen sublist toggelt
-    // - Klik op item ín .over-sublist  of andere top-level links => nav sluit
-    // ────────────────────────────────────────────────────────────────────────────
-    if (nav) {
-        nav.addEventListener('click', (e) => {
-            const link = e.target.closest('a');
-            if (!link) return;
-
-            // Niet sluiten bij ctrl/⌘-klik, middenklik, etc.
-            const modifiedClick = e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0;
-            if (modifiedClick) return;
-
-            const inSublist = !!link.closest('.over-sublist');
-            const inHasSub = !!link.closest('.has-sublist');
-            const hasClass = link.classList.contains('over-toggle');
-            const isOverToggle = hasClass || (inHasSub && !inSublist);
-
-            if (isOverToggle) {
-                // alleen sublist behandelen (zie blok hieronder)
-                return;
-            }
-
-            // Alles anders sluit nav
-            if (document.body.classList.contains('nav-open')) {
-                setNavState(false, null);
-            }
-        });
-    }
-
-    // ────────────────────────────────────────────────────────────────────────────
-    // OVER sublist (slide/fade)
-    // ────────────────────────────────────────────────────────────────────────────
-    const overItem = document.querySelector('.has-sublist');
-    if (overItem) {
-        const overLink = overItem.querySelector('.over-toggle') || overItem.querySelector('a');
-        const sublist = overItem.querySelector('.over-sublist');
-
-        if (overLink && sublist) {
-            overLink.setAttribute('aria-expanded', 'false');
-            sublist.setAttribute('role', 'group');
-
-            overLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                const isOpening = !overItem.classList.contains('open');
-
-                if (isOpening) {
-                    sublist.style.maxHeight = sublist.scrollHeight + 'px';
-                    sublist.style.opacity = '1';
-                    overItem.classList.add('open');
-                    overLink.setAttribute('aria-expanded', 'true');
-                } else {
-                    if (getComputedStyle(sublist).maxHeight === 'none') {
-                        sublist.style.maxHeight = sublist.scrollHeight + 'px';
+            if (response.ok) {
+                // Toon de custom popup als het gelukt is
+                const popup = document.getElementById('form-success-popup');
+                if (popup) {
+                    // zet eventueel een dynamisch bericht indien element bestaat
+                    const msgEl = popup.querySelector('[data-popup-message]');
+                    if (msgEl) {
+                        msgEl.setAttribute('aria-live', 'polite');
+                        msgEl.textContent = '✅ Bedankt! Je bericht is verstuurd. Ik antwoord binnen 24 uur.';
                     }
-                    requestAnimationFrame(() => {
-                        sublist.style.maxHeight = '0px';
-                        sublist.style.opacity = '0';
-                    });
-                    overItem.classList.remove('open');
-                    overLink.setAttribute('aria-expanded', 'false');
+                    popup.style.display = 'flex';
+                } else {
+                    // fallback zonder popup
+                    alert('✅ Bedankt! Je bericht is verstuurd. Ik antwoord binnen 24 uur.');
                 }
-            });
-
-            sublist.addEventListener('transitionend', (e) => {
-                if (e.propertyName === 'max-height' && overItem.classList.contains('open')) {
-                    sublist.style.maxHeight = 'none';
-                }
-            });
+                form.reset(); // Maak het formulier leeg
+            } else {
+                // probeer nette foutmelding van Formspree te lezen
+                let msg = 'Er ging iets mis. Probeer later opnieuw of mail naar info@cncstudio.net';
+                try {
+                    const json = await response.json();
+                    if (json && json.errors && Array.isArray(json.errors)) {
+                        msg = json.errors.map(er => er.message).join('\n');
+                    }
+                } catch (_) { /* ignore JSON parse errors */ }
+                alert(`❌ ${msg}`);
+            }
+        } catch (err) {
+            alert('⚠️ Netwerkfout. Stuur anders rechtstreeks een mail naar info@cncstudio.net');
+        } finally {
+            // reset UI state
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                if (prevBtnText) submitBtn.textContent = prevBtnText;
+            }
+            delete form.dataset.sending;
         }
-    }
-});
+    });
+}
 
+// Popup sluiten als je op het kruisje of buiten de popup klikt
+document.addEventListener('DOMContentLoaded', function () {
+    const popup = document.getElementById('form-success-popup');
+    const popupClose = document.getElementById('form-popup-close');
 
-
-// --- SCROLL FADE-IN ---
-const revealEls = document.querySelectorAll('.reveal');
-
-const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-
-        const el = entry.target;
-        el.classList.add('is-visible');   // triggert de fade-in
-
-        // optionele stagger voor eventuele child-elementen
-        const kids = el.querySelectorAll('[data-reveal-child]');
-        kids.forEach((kid, i) => {
-            kid.style.transitionDelay = `${i * 80}ms`;
+    if (popup && popupClose) {
+        // Klik op het kruisje
+        popupClose.addEventListener('click', () => {
+            popup.style.display = 'none';
         });
-
-        obs.unobserve(el); // éénmalig animeren
-    });
-}, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
-
-revealEls.forEach(el => io.observe(el));
-
-
-
-
-
-/*popup*/
-
-document.addEventListener("DOMContentLoaded", () => {
-    const popup = document.getElementById("popup");
-    const closeBtn = document.getElementById("popup-close");
-    const title = document.getElementById("popup-title");
-    const message = document.getElementById("popup-message");
-
-    // Detect language from page
-    let lang = document.documentElement.lang; // "nl-BE" or "en-GB"
-
-    if (lang.startsWith("nl")) {
-        title.textContent = "Belangrijk bericht";
-        message.textContent = "Deze website is momenteel geoptimaliseerd voor mobiele apparaten. De desktopversie is in ontwikkeling.";
-    } else {
-        title.textContent = "Important Notice";
-        message.textContent = "This website is currently optimized for mobile devices. A desktop version is under development.";
+        // Klik buiten de popup-content
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) popup.style.display = 'none';
+        });
+        // Esc om popup te sluiten (kleine accessibility bonus, geen brekende change)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') popup.style.display = 'none';
+        });
     }
-
-    // Show popup only on first visit
-    if (!localStorage.getItem("popupSeen")) {
-        popup.style.display = "flex";
-        localStorage.setItem("popupSeen", "true");
-    }
-
-    // Close popup
-    closeBtn.addEventListener("click", () => {
-        popup.style.display = "none";
-    });
 });
+
+
+
+
+
+
+
+
+
 
 
 

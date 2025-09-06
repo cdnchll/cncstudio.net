@@ -1,280 +1,250 @@
-* {
-    margin: 0;
-    padding: 0;
+/* Modern CSS Reset */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
 body {
-    background-color: black;
+    height: 100%;
+    width: 100%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
-body.no-scroll {
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    background: black;
+}
+
+/* voorkomt scrollen */
+body.nav-lock {
     overflow: hidden;
+    height: 100vh;
+    /* voorkomt soms "doorschuiven" op mobiel */
 }
 
-html {
-
-    font-size: 16px;
-    /* basis lettergrootte */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
 }
 
-/* Algemene container */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+    isolation: isolate;
+}
+
 .container {
     width: 100%;
+    max-width: 320px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-
+    box-sizing: border-box;
 }
 
-/* basis: verstopt + klein beetje naar beneden */
-.reveal {
-    opacity: 0;
-    transform: translateY(0px);
-    transition: opacity 2s ease, transform 2s ease;
-    will-change: opacity, transform;
+@media (min-width: 375px) {
+    .container {
+        max-width: 375px;
+    }
+
+    html {
+        font-size: 18px;
+    }
 }
 
-/* zodra in beeld → zichtbaar + op z’n plek */
-.reveal.is-visible {
-    opacity: 1;
-    transform: none;
-}
+@media (min-width: 425px) {
+    .container {
+        max-width: 425px;
+    }
 
-/* optionele richtingen via extra class */
-.reveal.fade-up {
-    transform: translateY(0px);
-}
-
-.reveal.fade-down {
-    transform: translateY(0px);
-}
-
-.reveal.fade-left {
-    transform: translateX(0px);
-}
-
-.reveal.fade-right {
-    transform: translateX(0px);
-}
-
-/* kinderen met vertraging (optioneel) */
-.reveal [data-reveal-child] {
-    opacity: 0;
-    transform: translateY(0px);
-    transition: opacity .5s ease, transform .5s ease;
-}
-
-.reveal.is-visible [data-reveal-child] {
-    opacity: 1;
-    transform: none;
-}
-
-section {
-    position: relative;
-    z-index: 1;
-}
-
-
-/* als iemand ‘minder animaties’ aan heeft */
-@media (prefers-reduced-motion: reduce) {
-
-    .reveal,
-    .reveal [data-reveal-child] {
-        transition: none !important;
-        transform: none !important;
-        opacity: 1 !important;
+    html {
+        font-size: 21px;
     }
 }
 
 
+#contact,
+#diensten {
+    scroll-margin-top: 87px;
+    /* Adjust to your header height */
+}
+
+/* FONTS */
+@font-face {
+    font-family: 'Outfit';
+    src: url(Assets/03_fonts/Outfit/outfit-v14-latin-200.woff2);
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Outfit';
+    src: url(Assets/03_fonts/Outfit/outfit-v14-latin-900.woff2);
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url(Assets/03_fonts/Barlow/barlow-v12-latin-300.woff2);
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url(Assets/03_fonts/Barlow/barlow-v12-latin-500.woff2);
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url(Assets/03_fonts/Barlow/barlow-v12-latin-600.woff2);
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url(Assets/03_fonts/Barlow/barlow-v12-latin-700.woff2);
+    font-weight: 700;
+    font-style: normal;
+}
+
+.title {
+    color: #FFF;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.text {
+    color: rgba(129, 129, 135, 0.90);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+/* CONTENT STARTS HERE */
 
 
-
-
-/*STYLE STARTS HERE*/
-.popup-overlay {
+/* HEADER*/
+.header {
     position: fixed;
+    background-color: black;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    height: 60px;
+
     display: flex;
-    justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 3000;
 }
 
-.popup-box {
-    background: #fff;
-    padding: 20px;
-    max-width: 400px;
-    border-radius: 12px;
-    text-align: center;
-    font-family: Arial, sans-serif;
-}
-
-.popup-box h2 {
-    margin-top: 0;
-}
-
-.popup-box button {
-    margin-top: 15px;
-    padding: 8px 16px;
-    background: #111;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-/*TAAL KEUZEN PAGE*/
-.talen-page {
+.header-inner {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top: 5.25rem;
-    gap: 3.75rem;
-}
-
-.taal-opties h1 {
-    padding-bottom: 3.25rem;
-    color: #E6E6E6;
-    text-align: center;
-    font-family: Outfit;
-    font-size: 1.1875rem;
-    font-style: normal;
-    font-weight: 100;
-    line-height: normal;
-}
-
-.talen-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2.94rem;
-}
-
-.talen-links a {
-    cursor: pointer;
-    color: #F5F5F5;
-    text-align: center;
-    font-family: Outfit;
-    font-size: 1.4375rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-
-}
-
-/* 1) Herbruikbare utility */
-.grow-10 {
-    display: inline-block;
-    /* nodig zodat transform netjes werkt op <a>/<span> */
-    transition: transform 150ms ease;
-    /* soepel */
-    will-change: transform;
-    /* performance hint */
-    transform-origin: center;
-    /* vanuit het midden schalen */
-    cursor: pointer;
-    /* handje */
-}
-
-/* 2) Hover + toetsenbord-focus */
-.grow-10:hover,
-.grow-10:focus-visible {
-    transform: scale(1.10);
-    /* +10% */
-}
-
-/* 3) Respecteer “reduce motion” */
-@media (prefers-reduced-motion: reduce) {
-    .grow-10 {
-        transition: none;
-    }
-
-    .grow-10:hover,
-    .grow-10:focus-visible {
-        transform: none;
-    }
-}
-
-/*01-HEADER*/
-
-.header {
-    width: 100%;
-    position: fixed;
-    background-color: black;
-    z-index: 1000;
-}
-
-.header-box {
-    display: flex;
-    width: 100%;
-    height: 3.75rem;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-@media (min-width: 600px) {
-    .cnc-logo {
-        width: 8.925rem;
-
-    }
+.header-logo {
+    width: 116px;
+    height: auto;
 }
-
 
 .menu-toggle {
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 }
 
-@media (min-width: 600px) {
-    .menu-toggle {
-        width: 2.7125rem;
+button {
+    background: none;
+    border: none;
+    padding: 0;
+}
 
+/* basis */
+.menu-toggle .top-bar,
+.menu-toggle .middle-bar,
+.menu-toggle .bottom-bar {
+    transition: transform 220ms ease, opacity 180ms ease;
+    transform-origin: 50% 50%;
+    /* draai rond het midden van het icoon */
+    transform-box: fill-box;
+    /* betere origin in SVG */
+}
+
+/* open state – zet je op de button */
+.header-nav--toggle.is-open .middle-bar {
+    opacity: 0;
+    /* fade weg */
+}
+
+/* naar kruis draaien:
+   10.9412 = verschil in Y naar het midden (15.5 - 4.55884) */
+.header-nav--toggle.is-open .top-bar {
+    transform: translateY(10.9412px) rotate(45deg);
+}
+
+.header-nav--toggle.is-open .bottom-bar {
+    transform: translateY(-10.9412px) rotate(-45deg);
+}
+
+/* optioneel: minder beweging voor mensen die dat willen */
+@media (prefers-reduced-motion: reduce) {
+
+    .menu-toggle .top-bar,
+    .menu-toggle .middle-bar,
+    .menu-toggle .bottom-bar {
+        transition: none;
     }
 }
 
-
-.menu-toggle path {
-    transition: all 0.3s ease;
-    transform-origin: center;
-    transform-box: fill-box;
-}
-
-.menu-toggle.open .top-bar {
-    transform: translateY(11px) rotate(45deg) scaleX(1.4);
-}
-
-.menu-toggle.open .bottom-bar {
-    transform: translateY(-11px) rotate(-45deg) scaleX(1.4);
-}
-
-.menu-toggle.open .middle-bar {
-    opacity: 0;
-}
-
-.menu-toggle:focus {
-    outline: none;
-}
-
-.menu-toggle:focus-visible {
-    outline: 2px solid white;
-    /* or your preferred style for keyboard users */
-}
-
-.site-nav {
+/* NAV */
+.main-nav {
     width: 100%;
     height: 100svh;
     background-color: black;
     display: flex;
     flex-direction: column;
-    padding-top: 3.19rem;
     position: fixed;
     opacity: 0;
     transform: translateX(-2rem);
@@ -284,31 +254,8 @@ section {
     z-index: 1100;
 }
 
-.site-nav a {
-    transition: color 0.3s ease-out;
-}
-
-.site-nav a:hover {
-    color: #CC541A;
-}
-
-.site-nav a:active {
-    color: white;
-}
-
-.site-nav .over-sublist a {
-    transition: color 0.3s ease-out;
-}
-
-.site-nav .over-sublist a:hover {
-    color: #CC541A;
-}
-
-.site-nav .over-sublist a:active {
-    color: white;
-}
-
-.nav-open .site-nav {
+/* open state (klasse op <body>) */
+.nav-open .main-nav {
     opacity: 1;
     transform: translateX(0);
     visibility: visible;
@@ -316,985 +263,489 @@ section {
     transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
-/* (Optional) reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-    .site-nav {
+    .main-nav {
         transition: none;
-        transform: none;
+    }
+
+    .nav-open .main-nav .container,
+    .nav-open .main-nav .nav-list,
+    .nav-open .main-nav .nav-footer {
+        animation: none;
     }
 }
 
-.site-nav ul {
-    color: #FFF;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+.main-nav__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: black;
+    width: 100%;
+    height: 100vh;
+    z-index: 2000;
+}
+
+.nav-list {
     list-style: none;
-
-
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 
 }
 
-.site-nav a {
+.nav-list a {
     text-decoration: none;
-    color: inherit;
 }
 
-.nav-wrap {
+.nav-list span {
+    font-family: 'outfit', sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.nav-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-footer .legal-link {
+    text-decoration: none;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+
+
+/* HERO */
+.hero {
+    position: relative;
+    width: 100%;
+
+}
+
+
+
+.hero-img {
+    opacity: 50%;
+    margin-top: 60px;
+    height: 28rem;
+    width: 100%;
+    object-fit: cover;
+
+
+}
+
+.hero-img-tablet {
+    display: none;
+    margin-top: 60px;
+    height: 18.875rem;
+    width: 18.875rem;
+    object-fit: cover;
+}
+
+
+
+.hero-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    top: 21rem;
+    left: 1.875rem;
+    width: 15.125rem;
+    z-index: 1;
+}
+
+
+
+.hero-title {
+    color: #FFF;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.hero-title span {
+    color: #D9D9D9;
+    font-weight: 500;
+}
+
+.hero-text {
+    color: #D9D9D9;
+    font-family: 'Barlow', sans-serif;
+    font-size: .625rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.hero-text span {
+    color: #fff;
+    font-weight: 700;
+}
+
+.hero-cta {
+    color: #D9D9D9;
+    font-family: 'Barlow', sans-serif;
+    font-size: .75rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration: none;
+    cursor: pointer;
+
+
+}
+
+.hero-cta span {
+    transition-property: color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.hero-cta span:hover {
+    color: #369FA4;
+}
+
+.infinite-scroll-text {
+    overflow: hidden;
+    white-space: nowrap;
+    mask-image: linear-gradient(to right, transparent, #121217 50%, #121217 50%, transparent 100%);
+
+}
+
+.infinite-scroll-text span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-text 30s linear infinite;
+    font-size: 5.375rem;
+    font-family: 'outfit', sans-serif;
+    font-weight: 900;
+    /* pas aan naar wens */
+    color: #369FA4;
+    /* pas aan naar wens */
+    opacity: 50%;
+
+}
+
+@keyframes scroll-text {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-110%);
+    }
+}
+
+/* FREELANCEr */
+.freelancer {
+    margin-top: 126px;
+}
+
+
+.freelancer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.freelancer-title {
+    text-align: center;
+}
+
+.freelancer-text {
+    text-align: center;
+}
+
+/* DIENSTEN */
+.diensten {
+    margin-top: 16px;
+}
+
+.diensten-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.diensten-title {
+    text-align: center;
+}
+
+.diensten-text {
+    text-align: center;
+}
+
+.diensten-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 5rem;
+}
+
+.diensten-card--title,
+.diensten-card--text {
+    text-align: center;
+}
+
+.diensten-img-1 {
+    width: 7.25rem;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.diensten-img-2 {
+    width: 7.25rem;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.diensten-img-3 {
+    width: 7.25rem;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.infinite-scroll {
+    width: 100vw;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #121217 50%, #121217 50%, transparent 100%);
+}
+
+.infinite-scroll-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-logos 5s linear infinite;
+}
+
+@keyframes scroll-logos {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.infinite-scroll .logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+/* CONTACT */
+.contact {
+    margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
 
-/* Container transition (geen display:none gebruiken) */
-.over-sublist {
-    max-height: 0;
-    opacity: 0;
-    /* fade van hele blok */
-    overflow: hidden;
-    list-style: none;
-    margin: 0;
-    padding-left: 1rem;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
-}
-
-/* Elk item start onzichtbaar en iets omhoog */
-.over-sublist>li {
-    opacity: 0;
-    transform: translateY(-6px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-/* Open state: container en items zichtbaar */
-.has-sublist.open .over-sublist {
-    max-height: 500px;
-    /* of hoger indien nodig */
-    opacity: 1;
-}
-
-/* Stagger: per item vertraging bij openen */
-.has-sublist.open .over-sublist>li:nth-child(1) {
-    transition-delay: 60ms;
-}
-
-.has-sublist.open .over-sublist>li:nth-child(2) {
-    transition-delay: 120ms;
-}
-
-.has-sublist.open .over-sublist>li:nth-child(3) {
-    transition-delay: 180ms;
-}
-
-.has-sublist.open .over-sublist>li:nth-child(4) {
-    transition-delay: 240ms;
-}
-
-/* Wanneer open, eindtoestand voor items */
-.has-sublist.open .over-sublist>li {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.over-sublist a {
-    color: #FFF;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.nav-wrap span {
-    color: #FFF;
-    font-family: Outfit, sans-serif;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.over-sublist span {
-    color: #FFF;
-    font-family: Outfit;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.privacy-voorwaarden {
-    padding-top: 2.69rem;
-    padding-left: 2.5rem;
-}
-
-.privacy-voorwaarden p {
-    color: #FFF;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.social-links-nav {
-    padding-top: 1rem;
-    padding-left: 2.5rem;
-}
-
-
-/*02-HERO*/
-
-
-.hero-box img {
-    margin-top: 60px;
-    width: 100%;
-    height: 280px;
-    aspect-ratio: auto;
-    object-fit: cover;
-
-}
-
-
-
-.hero-box h1 {
-    padding-top: 0.56rem;
-    color: #E6E6E6;
-    font-family: Montserrat;
-    font-size: 2.5rem;
-    font-style: normal;
-    font-weight: 200;
-    line-height: 1.9375rem;
-}
-
-
-
-
-
-.hero-box span {
-    color: #E6E6E6;
-    font-family: Montserrat;
-    font-size: 2.5rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1.9375rem;
-}
-
-.contact-link {
-    margin-top: 2.56rem;
+.contact-content {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-.hero-box a {
-    color: #F5F5F5;
+.contact-title {
     text-align: center;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    transition: color 0.3s ease-out;
-    text-decoration: underline;
 }
 
-
-
-.hero-box a:hover {
-    color: #CC541A;
-}
-
-.hero-box a:active {
-    color: black;
-    /* 0.6s voor 2x knipperen */
-}
-
-/*03-FREELANCE*/
-.freelance {
-    width: 100%;
-    height: auto;
-    background: #D9D9D9;
-    margin-top: 1.87rem;
-    padding-bottom: 3.5rem;
-}
-
-.freelance-box h1 {
-    padding-top: 4.75rem;
-    color: #191919;
-    font-family: Montserrat;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
-
-
-.freelance-box p {
-    padding-top: 1.5rem;
-    color: #4C4C4C;
-    font-family: Montserrat;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-
-
-.voordelen-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.voordelen-wrap>p {
-    color: #555b61;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-
-}
-
-
-
-.diensten-link {
-    margin-top: 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-
-.freelance-box a {
-
-    color: #000;
+.contact-text {
     text-align: center;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    transition: color 0.3s ease-out;
 }
 
-.freelance-box a:hover {
-    color: #CC541A;
+.contact-text span {
+    color: #369FA4;
 }
 
-.freelance-box a:active {
-    color: black;
-    /* 0.6s voor 2x knipperen */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
+label {
+    display: flex;
+    width: 17.5rem;
+    padding: 0.625rem;
+    align-items: center;
+    gap: 0.625rem;
 
-
-/*04-CONTACT ME*/
-.contact {
-    background: #D9D9D9;
-}
-
-.contact img {
+    border-radius: 0.625rem;
+    border: 3px solid #49647E;
+    background: #F5F5F5;
     width: 100%;
-    height: auto;
-    object-fit: cover;
 }
 
-.contact-me-box {
-    padding-top: 4.75rem;
-}
+input,
+textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: #F5F5F5;
 
-.contact-me-box h1 {
-    color: #191919;
-    font-family: Montserrat, sans-serif;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
-
-
-.contact-me-box p {
-    padding-top: 1.5rem;
-    color: #4C4C4C;
-    font-family: Montserrat;
+    color: rgba(129, 129, 135, 0.80);
+    font-family: 'Barlow', sans-serif;
     font-size: 1rem;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     line-height: normal;
+    letter-spacing: 0.02rem;
 }
 
+.contact-cta {
+    display: inline-flex;
+    padding: 0.625rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
 
+    border-radius: 0.625rem;
+    border: 1px solid #49647E;
+    background: #369FA4;
+    box-shadow: 0 4px 4px 0 rgba(24, 49, 72, 0.50);
 
-.contact-me-box span {
-    color: #4C4C4C;
-    font-family: Montserrat;
-    font-size: 1rem;
+    color: #FFF;
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.125rem;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: normal;
+    letter-spacing: 0.0225rem;
 }
 
-
-
-.contact-me-box .voordelen-nowrap p {
-    color: #555b61;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    /* zacht en subtiel */
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
+/* SITEMAP */
+.sitemap {
+    margin-top: 63px;
 }
 
-
-
-
-
-.contact-me-box .contact-me-footer {
-    color: #4C4C4C;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    font-family: Montserrat;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-
-}
-
-
-
-.contact-me-box {
-    padding-bottom: 2.25rem;
-}
-
-/*05-CONTACT INFO*/
-.contact-info-box {
-    padding-top: 4.75rem;
-}
-
-.contact-info-box h1 {
-    color: #E6E6E6;
-    font-family: Montserrat, sans-serif;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    padding-bottom: 2rem;
-}
-
-.contact-info-box p {
-    color: #B3B3B3;
-    font-family: Montserrat, sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding-bottom: 1rem;
-}
-
-.sitemap-title {
-    padding-top: 3.25rem;
+.sitemap-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .sitemap-links {
-    text-decoration: none;
-    list-style: none;
-    color: inherit;
     display: flex;
     flex-direction: column;
-    gap: 0.62rem;
-
-}
-
-.sitemap-links a:hover {
-    color: #CC541A;
-}
-
-.sitemap-links a:active {
-    color: white;
+    gap: 0.5rem
 }
 
 .sitemap-links a {
     text-decoration: none;
-    list-style: none;
-    color: inherit;
-    color: #B3B3B3;
-    font-family: Montserrat;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    transition: color 0.3s ease-out;
+    cursor: pointer;
+    transition-property: color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.sitemap-links a:hover {
+    color: #369FA4;
 }
 
 .sitemap-links span {
-    color: #F5F5F5;
-    font-family: Outfit;
-    font-size: 1rem;
+    color: rgba(217, 217, 217, 0.70);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.875rem;
     font-style: normal;
-    font-weight: 800;
+    font-weight: 900;
     line-height: normal;
+    letter-spacing: 0.00875rem;
 }
 
-/*06-FOOTER*/
-.footer-line {
-    margin-top: 1rem;
-    width: 100%;
-    height: 0.0625rem;
-    background: #F5F5F5;
-    margin-bottom: 1rem;
+/* FOOTER */
+.footer {
+    margin-top: 16px;
+
+    border-top: 1px solid rgba(217, 217, 217, 0.20);
 }
 
-.footer-box p {
-    color: #F5F5F5;
-    text-align: center;
-    font-family: Outfit;
-    font-size: 0.625rem;
+.footer-text {
+    margin-top: 16px;
+    padding-bottom: 16px;
+    color: rgba(217, 217, 217, 0.70);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
     font-style: normal;
     font-weight: 200;
     line-height: normal;
-    padding-bottom: 1rem;
-}
-
-/*06 OVER CODE&CHILL*/
-.over-cnc {
-    display: flex;
-    flex-direction: column;
-    padding-top: 5.75rem;
-}
-
-.over-cnc h1 {
-    padding-bottom: 1.5rem;
-    color: #F5F5F5;
-    font-family: Montserrat, sans-serif;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-}
-
-.over-cnc p {
-    padding-bottom: 1.5rem;
-    color: #B3B3B3;
-    font-family: Montserrat, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.1rem;
-}
-
-.over-cnc span {
-    color: #F5F5F5;
-    font-family: Outfit, sans-serif;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-}
-
-.iphone-mockup {
-    width: 10.9375rem;
-    height: 23rem;
-    flex-shrink: 0;
-    aspect-ratio: 39/82;
-    box-shadow: 10px 4px 10px 0 rgba(255, 255, 255, 0.30);
-    object-fit: cover;
-    border-radius: 1.75rem;
-    margin-bottom: 1.5rem;
-}
-
-/*07 OVER MIJ*/
-.overmij-content {
-    padding-top: 5.75rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.overmij-content h1 {
-    padding-bottom: 1.5rem;
-    color: #F5F5F5;
-    font-family: Montserrat;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-}
-
-.overmij-content p {
-    padding-bottom: 1rem;
-    color: #B3B3B3;
-    font-family: Montserrat;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.1rem;
-}
-
-.murilo-chilling-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-/*08 DIENSTEN*/
-#diensten {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.dienst-1-box {
-    border-bottom: 1px solid #191919;
-    width: 100%;
-    height: auto;
-    background: #D9D9D9;
-
-}
-
-.dienst-design-creatie {
-    position: relative;
-    padding-top: 5.75rem;
     text-align: center;
 }
 
-.dienst-design-creatie h1 {
-    color: #191919;
-    text-align: center;
-    font-family: Montserrat, sans-serif;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
+.footer-text span {
+    font-weight: 900;
 }
 
-
-
-.dienst-design-creatie h3 {
-    padding-top: 2rem;
-    color: #191919;
-    text-align: center;
-    font-family: Montserrat, sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+/* OVER */
+.overcnc {
+    margin-top: 100px;
 }
 
-
-
-.dienst-design-creatie p {
-    padding-top: 3.12rem;
+.overcnc-content {
     display: flex;
     flex-direction: column;
-    color: #191919;
-    font-family: Montserrat, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding-bottom: 1rem;
-}
-
-
-
-.dienst-design-creatie span {
-    color: #191919;
-    text-align: center;
-    font-family: Montserrat, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-    text-decoration-skip-ink: auto;
-    text-decoration-thickness: auto;
-    text-underline-offset: auto;
-    text-underline-position: from-font;
-}
-
-
-
-.dienst-design-creatie img {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-    position: absolute;
-    opacity: 30%;
-    width: auto;
-    height: 50%;
-}
-
-
-
-
-.dienst-2-box {
-
-    width: 100%;
-    height: auto;
-    background: #191919;
-
-}
-
-.dienst-webontwikkeling {
-    position: relative;
-    text-align: center;
-}
-
-.dienst-webontwikkeling h3 {
-    padding-top: 2rem;
-    color: #D9D9D9;
-    text-align: center;
-    font-family: Montserrat, sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
-
-
-.dienst-webontwikkeling p {
-    padding-top: 3.12rem;
-    display: flex;
-    flex-direction: column;
-    color: #D9D9D9;
-    font-family: Montserrat, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding-bottom: 1rem;
-}
-
-
-
-.dienst-webontwikkeling span {
-    color: #D9D9D9;
-    text-align: center;
-    font-family: Montserrat, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-    text-decoration-skip-ink: auto;
-    text-decoration-thickness: auto;
-    text-underline-offset: auto;
-    text-underline-position: from-font;
-}
-
-
-
-.dienst-webontwikkeling img {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-    position: absolute;
-    opacity: 30%;
-    width: auto;
-    height: 50%;
-}
-
-
-
-
-
-.dienst-3-box {
-
-    width: 100%;
-    height: auto;
-    background: #D9D9D9;
-
-}
-
-.dienst-seo {
-    position: relative;
-    text-align: center;
-}
-
-.dienst-seo h3 {
-    padding-top: 2rem;
-    color: #191919;
-    text-align: center;
-    font-family: Montserrat, sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
-
-
-.dienst-seo p {
-    padding-top: 3.12rem;
-    display: flex;
-    flex-direction: column;
-    color: #191919;
-    font-family: Montserrat, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding-bottom: 1rem;
-}
-
-
-
-.dienst-seo span {
-    color: #191919;
-    text-align: center;
-    font-family: Montserrat, sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-    text-decoration-skip-ink: auto;
-    text-decoration-thickness: auto;
-    text-underline-offset: auto;
-    text-underline-position: from-font;
-}
-
-
-
-.dienst-seo img {
-    display: flex;
-    flex-direction: column;
-    align-self: flex-end;
-    position: absolute;
-    opacity: 30%;
-    width: auto;
-    height: 50%;
-}
-
-/*09 PRIVACY*/
-.privacy-background {
-    background-color: white;
-}
-
-.privacy-content {
-    display: flex;
-    flex-direction: column;
-    padding-top: 5rem;
     gap: 1.5rem;
 }
 
-.privacy-content ol,
-li {
-    padding-left: 20px;
-    padding-bottom: 1rem;
-
+.overcnc-content span {
+    font-family: 'outfit';
+    font-weight: 900;
 }
 
-.privacy-content h1 {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+/* PRIVACY POLICY */
+.privacy-policy {
+    margin-top: 80px;
 }
 
-.privacy-content h3 {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    padding-bottom: 1.5rem;
-}
-
-.privacy-content p {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding-bottom: 1rem
-}
-
-.privacy-content li {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.privacy-content span {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-    text-decoration-skip-ink: auto;
-    text-decoration-thickness: auto;
-    text-underline-offset: auto;
-    text-underline-position: from-font;
-}
-
-/*10 COOKIE*/
-.cookie-background {
-    background-color: white;
-}
-
-.cookie-content {
+.privacy-policy--content,
+.privacy-ol {
     display: flex;
     flex-direction: column;
-    padding-top: 5rem;
-    gap: 1.5rem;
+    gap: 1.25rem;
 }
 
-.cookie-content ol,
-li {
-    padding-left: 20px;
-    padding-bottom: 1rem;
-
-}
-
-.cookie-content h1 {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 2rem;
+.privacy-title {
+    color: #121212;
+    text-align: right;
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.5rem;
     font-style: normal;
-    font-weight: 700;
+    font-weight: 900;
     line-height: normal;
 }
 
-.cookie-content h3 {
+.privacy-ol ul {
+    padding-left: 1.25rem;
+    list-style-type: disc;
+}
+
+.privacy-subtitle {
     color: #000;
-    font-family: "Barlow Condensed", sans-serif;
+    font-family: 'Barlow';
     font-size: 1.375rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    padding-bottom: 1.5rem;
+
 }
 
-.cookie-content p {
+.privacy-text {
     color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding-bottom: 1rem
-}
-
-.cookie-content li {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.cookie-content span {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
+    font-family: 'barlow';
     font-size: 1.125rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-    text-decoration-skip-ink: auto;
-    text-decoration-thickness: auto;
-    text-underline-offset: auto;
-    text-underline-position: from-font;
-}
-
-/*11 ALGEMENE VOORWAARDEN*/
-.voorwaarden-background {
-    background-color: white;
-}
-
-.voorwaarden-content {
-    display: flex;
-    flex-direction: column;
-    padding-top: 5rem;
-    gap: 1.5rem;
-}
-
-.voorwaarden-content ol,
-li {
-    padding-left: 20px;
-    padding-bottom: 1rem;
-
-}
-
-.voorwaarden-content h1 {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-
-.voorwaarden-content h3 {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    padding-bottom: 1.5rem;
-}
-
-.voorwaarden-content p {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding-bottom: 1rem
-}
-
-.voorwaarden-content li {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.voorwaarden-content span {
-    color: #000;
-    font-family: "Barlow Condensed", sans-serif;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-    text-decoration-skip-ink: auto;
-    text-decoration-thickness: auto;
-    text-underline-offset: auto;
-    text-underline-position: from-font;
 }
