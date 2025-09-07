@@ -92,6 +92,22 @@ h6 {
     }
 }
 
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1024px;
+    }
+
+    html {
+        font-size: 28px;
+    }
+}
+
 
 #contact,
 #diensten {
@@ -151,6 +167,12 @@ h6 {
     line-height: normal;
 }
 
+@media (min-width: 768px) {
+    .title {
+        font-size: 1.524rem;
+    }
+}
+
 .text {
     color: rgba(129, 129, 135, 0.90);
     font-family: 'Barlow', sans-serif;
@@ -158,6 +180,12 @@ h6 {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+}
+
+@media (min-width: 768px) {
+    .text {
+        font-size: 1.33rem;
+    }
 }
 
 /* CONTENT STARTS HERE */
@@ -334,8 +362,12 @@ button {
     height: 28rem;
     width: 100%;
     object-fit: cover;
+}
 
-
+@media (min-width: 768px) {
+    .hero-img {
+        height: 38.33rem;
+    }
 }
 
 .hero-img-tablet {
@@ -359,6 +391,13 @@ button {
     z-index: 1;
 }
 
+@media (min-width: 768px) {
+    .hero-content {
+        width: 26rem;
+        top: 29rem;
+    }
+}
+
 
 
 .hero-title {
@@ -368,6 +407,12 @@ button {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 1.523rem;
+    }
 }
 
 .hero-title span {
@@ -384,6 +429,12 @@ button {
     line-height: normal;
 }
 
+@media (min-width: 768px) {
+    .hero-text {
+        font-size: 1.142rem;
+    }
+}
+
 .hero-text span {
     color: #fff;
     font-weight: 700;
@@ -398,8 +449,14 @@ button {
     line-height: normal;
     text-decoration: none;
     cursor: pointer;
+}
 
-
+@media (min-width: 768px) {
+    .hero-cta {
+        font-size: 1.285rem;
+        position: relative;
+        top: 21px;
+    }
 }
 
 .hero-cta span {
